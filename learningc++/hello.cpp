@@ -182,18 +182,52 @@
 
 // GCD
 
+// # include <bits/stdc++.h>
+// using namespace std;
+
+// void gcd(int a, int b) {
+//     while(a > 0 && b > 0) {    // O(log@ (m(a, b)))
+//         if(a > b) a = a % b;
+//         else b = b % a;
+//     }
+//     if(a == 0) cout << b;
+//     else cout << a;
+// }
+
+// int main() {
+
+// }
+
+
+
+// binary search
+
 # include <bits/stdc++.h>
 using namespace std;
 
-void gcd(int a, int b) {
-    while(a > 0 && b > 0) {    // O(log@ (m(a, b)))
-        if(a > b) a = a % b;
-        else b = b % a;
+void binarySearch(int arr[], int n, int num ) {
+    int s = 0;
+    int l = n-1;
+    int mid;
+    while(s < l) {
+        mid = (s+l)/2;
+        if(arr[mid] == num) {
+            cout << "element found " <<mid+1<<endl;
+            break;
+        }
+        else if(arr[mid] < num) {
+            mid = s + 1;
+        }
+        else if(arr[mid] > num) {
+            mid = l - 1;
+        }
     }
-    if(a == 0) cout << b;
-    else cout << a;
 }
-
 int main() {
-
+    int arr[] = {1, 2, 3, 4, 5, 6};
+    int n = 6;
+    int num = 3;
+    binarySearch(arr, n, num);
+    return 0;
 }
+
