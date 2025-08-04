@@ -252,19 +252,84 @@
 
 //Checking if a string is a palindrome ot not
 
+// # include <bits/stdc++.h>
+// using namespace std;
+// int f(int i, string &s) {
+//     if(i >= s.size()/2) {
+//         return true;
+//     }
+//     if(s[i] != s[s.size() - i -1]) return false;
+
+// return f(i+1, s);
+// }
+// int main() {
+//     string s;
+//     cin >> s;
+
+//     cout << f(0, s);
+// }
+
+
+// Hashing
+
+
+// # include <bits/stdc++.h>
+// using namespace std;
+
+// int main() {
+//     string s;
+//     cin >> s;
+
+    
+//     int hash[25] = {0};
+//     for(int i =0; i < s.size(); i++) {
+//         hash[s[i]-'a']++;
+//     }
+//     int q;
+//     cin >> q;
+
+//     while(q--) {
+//         char ch;
+//         cin >> ch;
+//         cout << hash[ch- 'a'];   // galti alert solved
+//     }
+//     return 0;
+// }
+
+
+// Hashing using maps
+
 # include <bits/stdc++.h>
 using namespace std;
-int f(int i, string &s) {
-    if(i >= s.size()/2) {
-        return true;
-    }
-    if(s[i] != s[s.size() - i -1]) return false;
 
-return f(i+1, s);
-}
 int main() {
     string s;
     cin >> s;
 
-    cout << f(0, s);
+    // int q;
+    // cin >> q;
+
+    map<char, int> mpp;
+    for(int i = 0; i < s.size(); i++) {
+        mpp[s[i]]++;
+    }
+    int maxFreq = INT_MIN;
+    int minFreq = INT_MAX;
+    for(auto it : mpp) {
+        cout << it.first << "-->" << it.second << endl;
+        if(it.second > maxFreq){
+            maxFreq = it.second;
+        }
+        if(it.second < minFreq){
+            minFreq = it.second;
+        }
+    }
+    // while(q--) {
+    //     char ch;
+    //     cin >> ch;
+    //     cout << mpp[ch];
+    //}
+    cout << maxFreq << endl;
+    cout << minFreq << endl;
+    return 0;
 }
