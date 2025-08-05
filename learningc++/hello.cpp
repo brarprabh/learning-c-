@@ -408,30 +408,138 @@
 
 // Mover all the zeros to the right
 
-# include <bits/stdc++.h>
-using namespace std;
- vector<int> move(vector<int> &arr, int n) {
-    int j = -1;   // we dont know the position of j
-    for(int i= 0; i < n; i++) {
-        if(arr[i] == 0){ j = i;
-        break;}
-    }
-    for(int i = j + 1; i < n; i++) {
-        if(arr[i]!=0) {
-            swap(arr[i], arr[j]); j++;
-    }
+// # include <bits/stdc++.h>
+// using namespace std;
+//  vector<int> move(vector<int> &arr, int n) {
+//     int j = -1;   // we dont know the position of j
+//     for(int i= 0; i < n; i++) {
+//         if(arr[i] == 0){ j = i;
+//         break;}
+//     }
+//     for(int i = j + 1; i < n; i++) {
+//         if(arr[i]!=0) {
+//             swap(arr[i], arr[j]); j++;
+//     }
     
- }
- return arr;
+//  }
+//  return arr;
+// }
+// int main() {
+//     int n; cin >>n;
+//     vector<int> arr;
+//     for(int i =0; i < n; i++) {
+//         int x; cin >> x; 
+//         arr.push_back(x);
+//     }
+//     vector<int> result = move(arr, n);
+//     for(auto it : result) cout << it << " ";
+//     return 0;
+// }
+
+
+// Union
+
+// # include<bits/stdc++.h>
+// using namespace std;
+// vector<int> Union(vector<int> &arr, vector<int> &brr, int n1, int n2) {
+//     int i = 0; 
+//     int j = 0;
+//     vector<int> unionarr;
+//     while(i < n1 && j < n2) {
+//         if(arr[i] <= brr[j])  {
+//             if(unionarr.size() == 0 || unionarr.back() != arr[i]) {
+//                 unionarr.push_back(arr[i]);
+//             }
+//             i++;
+//             } 
+//             else {
+                
+//                     if(unionarr.size() == 0 || unionarr.back() != brr[j]) {
+//                         unionarr.push_back(brr[j]);
+//                     }
+//                     j++;
+//             }
+//     }
+//     while(i < n1) {
+          
+//             if(unionarr.size() == 0 || unionarr.back() != arr[i]) {
+//                 unionarr.push_back(arr[i]);
+//             }
+//             i++;
+//         }
+//         while(j < n2) {
+//             if(unionarr.size() == 0 || unionarr.back() != brr[j]) {
+//                 unionarr.push_back(brr[j]);
+//             }
+//             j++;
+//         }
+//         return unionarr;
+// }
+// int main() {
+//     int n1;
+//     cin >> n1;
+//     vector<int> arr;
+//     for(int i = 0; i < n1; i++) {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int n2;
+//     cin >> n2;
+//     vector<int> brr;
+//     for(int i = 0; i < n2; i++) {
+//         int y;
+//         cin >> y;
+//         brr.push_back(y);
+//     }
+//     vector<int> result = Union(arr, brr, n1, n2);
+//     for(auto it :result) { cout<< it <<" "; }
+//     return 0;
+// }
+
+
+//Intersection 
+
+# include<bits/stdc++.h>
+using namespace std;
+
+vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2) {
+      int i = 0; 
+      int j = 0; 
+      vector<int>insertarr;
+      while(i < n1 && j < n2) {
+        if(arr[i] < brr[j]) i++;
+      
+      else if(arr[i] > brr[j]) j++;
+    else 
+    {
+        insertarr.push_back(arr[i]);
+        i++; j++; 
+    }
+
+    }
+    return insertarr;
 }
 int main() {
-    int n; cin >>n;
+    int n1;
+    cin >> n1;
     vector<int> arr;
-    for(int i =0; i < n; i++) {
-        int x; cin >> x; 
+    for(int i = 0; i < n1; i++) {
+        int x; 
+        cin >> x;
         arr.push_back(x);
+    }   
+    int n2;
+    cin >> n2;
+    vector<int> brr;
+    for(int i = 0; i < n2; i++) {
+        int y; 
+        cin >> y;
+        brr.push_back(y);
+    }   
+    vector<int> result = intersectionarr(arr, brr, n1, n2);
+    for(auto it : result) {
+        cout << it << " ";
     }
-    vector<int> result = move(arr, n);
-    for(auto it : result) cout << it << " ";
     return 0;
 }
