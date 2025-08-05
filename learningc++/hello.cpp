@@ -379,27 +379,59 @@
 
 // rotate array by d elements
 
+// # include <bits/stdc++.h>
+// using namespace std;
+// void rotate(int arr[], int n, int d) {
+//     d = d % n;
+//     int temp[d];
+//     for(int i = 0; i < d; i++) {
+//         temp[i] = arr[i]; 
+//     }
+//     for(int i = d; i < n; i++) {
+//         arr[i-d] = arr[i];
+//     }
+//     for(int i = n-d; i < n; i++) { // kyunki more than d h skde aa
+//         arr[i] = temp[i - (n-d)];
+//     }
+// }
+// int main() {
+//     int n; cin >> n;
+//     int d; cin >> d;
+//     int arr[n] ;
+//     for(int i = 0; i < n; i++) cin >> arr[i];
+//     rotate(arr, n, d);
+//     for(int i = 0; i < n; i++) cout << arr[i];
+//     return 0;
+// }
+
+
+
+// Mover all the zeros to the right
+
 # include <bits/stdc++.h>
 using namespace std;
-void rotate(int arr[], int n, int d) {
-    d = d % n;
-    int temp[d];
-    for(int i = 0; i < d; i++) {
-        temp[i] = arr[i]; 
+ vector<int> move(vector<int> &arr, int n) {
+    int j = -1;   // we dont know the position of j
+    for(int i= 0; i < n; i++) {
+        if(arr[i] == 0){ j = i;
+        break;}
     }
-    for(int i = d; i < n; i++) {
-        arr[i-d] = arr[i];
+    for(int i = j + 1; i < n; i++) {
+        if(arr[i]!=0) {
+            swap(arr[i], arr[j]); j++;
     }
-    for(int i = n-d; i < n; i++) { // kyunki more than d h skde aa
-        arr[i] = temp[i - (n-d)];
-    }
+    
+ }
+ return arr;
 }
 int main() {
-    int n; cin >> n;
-    int d; cin >> d;
-    int arr[n] ;
-    for(int i = 0; i < n; i++) cin >> arr[i];
-    rotate(arr, n, d);
-    for(int i = 0; i < n; i++) cout << arr[i];
-
+    int n; cin >>n;
+    vector<int> arr;
+    for(int i =0; i < n; i++) {
+        int x; cin >> x; 
+        arr.push_back(x);
+    }
+    vector<int> result = move(arr, n);
+    for(auto it : result) cout << it << " ";
+    return 0;
 }
