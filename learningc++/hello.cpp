@@ -299,37 +299,78 @@
 
 // Hashing using maps
 
+// # include <bits/stdc++.h>
+// using namespace std;
+
+// int main() {
+//     string s;
+//     cin >> s;
+
+//     // int q;
+//     // cin >> q;
+
+//     map<char, int> mpp;
+//     for(int i = 0; i < s.size(); i++) {
+//         mpp[s[i]]++;
+//     }
+//     int maxFreq = INT_MIN;
+//     int minFreq = INT_MAX;
+//     for(auto it : mpp) {
+//         cout << it.first << "-->" << it.second << endl;
+//         if(it.second > maxFreq){
+//             maxFreq = it.second;
+//         }
+//         if(it.second < minFreq){
+//             minFreq = it.second;
+//         }
+//     }
+//     // while(q--) {
+//     //     char ch;
+//     //     cin >> ch;
+//     //     cout << mpp[ch];
+//     //}
+//     cout << "Maximum frequency is" << maxFreq << endl;
+//     cout << "Minimum frequency is" << minFreq << endl;
+//     return 0;
+// }
+
+
+// largest and second largest elements
+
 # include <bits/stdc++.h>
 using namespace std;
-
+vector<int> greatest(vector<int> &a, int n) {
+    int largest = INT_MIN;
+    int slargest = INT_MIN;
+    for(int i = 0; i < n; i++) {
+        if(a[i] > largest) {
+            slargest = largest;
+            largest = a[i];
+        }
+        else if(a[i] < largest && a[i] > slargest) slargest = a[i];
+    }
+    return {largest, slargest};
+}
+vector<int> answer(vector<int> &a, int n)
+{
+  return  greatest(a, n);
+}
 int main() {
-    string s;
-    cin >> s;
+    int n;
+    cin>>n;
 
-    // int q;
-    // cin >> q;
-
-    map<char, int> mpp;
-    for(int i = 0; i < s.size(); i++) {
-        mpp[s[i]]++;
-    }
-    int maxFreq = INT_MIN;
-    int minFreq = INT_MAX;
-    for(auto it : mpp) {
-        cout << it.first << "-->" << it.second << endl;
-        if(it.second > maxFreq){
-            maxFreq = it.second;
-        }
-        if(it.second < minFreq){
-            minFreq = it.second;
-        }
-    }
-    // while(q--) {
-    //     char ch;
-    //     cin >> ch;
-    //     cout << mpp[ch];
+    // int arr[n];
+    // for(int i = 0; i < n; i++){
+    //     cin >> arr[i];
     //}
-    cout << maxFreq << endl;
-    cout << minFreq << endl;
+    vector<int> arr;
+for(int i = 0; i < n; i++) {
+    int x;
+    cin >> x;
+    arr.push_back(x);
+}
+
+  vector<int> ans = answer(arr, n);
+  cout << ans[0] << " " << ans[1];
     return 0;
 }
