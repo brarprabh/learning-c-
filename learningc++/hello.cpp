@@ -547,32 +547,63 @@
 
 // Finding missing number using xor
 
+// # include <bits/stdc++.h>
+// using namespace std;
+//     vector<int> missing(vector<int> &arr, int n){
+//         int N = n - 1;  // since one number is missing
+//         int Xor1 = 0, Xor2 = 0;
+//         vector<int> ans;
+//         for(int i = 0; i < N; i++) {
+//             Xor2 = Xor2 ^ arr[i];
+//             Xor1 = Xor1 ^ (i+1);
+//         }
+//         Xor1 = Xor1 ^ n;
+//         ans.push_back(Xor1 ^ Xor2);
+//         return ans;
+//     }
+// int main() {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for(int i = 0; i < n; i++) {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer = missing( arr, n);
+//     for(auto it : answer) {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+
+// Maximum consequtuve ones
+
+
 # include <bits/stdc++.h>
 using namespace std;
-    vector<int> missing(vector<int> &arr, int n){
-        int N = n - 1;  // since one number is missing
-        int Xor1 = 0, Xor2 = 0;
-        vector<int> ans;
-        for(int i = 0; i < N; i++) {
-            Xor2 = Xor2 ^ arr[i];
-            Xor1 = Xor1 ^ (i+1);
+    int conseq(vector<int> arr, int n) {
+        int maxi = 0;
+        int count = 0;
+        for(int i = 0; i < n; i++) {
+            if(arr[i] == 1) {
+                count++;
+                maxi = max(maxi, count);
+            }
+            else{
+                count = 0;
+            }
         }
-        Xor1 = Xor1 ^ n;
-        ans.push_back(Xor1 ^ Xor2);
-        return ans;
+        return maxi;
     }
 int main() {
-    int n;
-    cin >> n;
+    int n; cin >> n;
     vector<int> arr;
-    for(int i = 0; i < n; i++) {
-        int x;
-        cin >> x;
+    for(int i =0; i < n; i++) {
+        int x; cin >> x;
         arr.push_back(x);
     }
-    vector<int> answer = missing( arr, n);
-    for(auto it : answer) {
-        cout << it << " ";
-    }
+    cout << conseq(arr, n);
     return 0;
 }
