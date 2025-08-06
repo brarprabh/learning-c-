@@ -22,25 +22,18 @@
 //         pair<int, int> p = {1, 3};
 //         cout << p.first << " " << p.second;
 //         pair<int, pair<int, int>> p = {1, {3, 4}};
-        
 
 //         pair<int, int> arr[] = {{1, 2}, {3, 4}, {5, 6}};
 //         cout << arr[1].second;
 //     }
-       
+
 // int main() {
 //     int n;
 //     cin >> n;
-    
+
 // }
 
-
-
-
-
-
-// VECTORS.. 
-
+// VECTORS..
 
 // # include<bits/stdc++.h>
 // using namespace std;
@@ -49,16 +42,13 @@
 //         v.push_back(1);
 //         v.emplace_back(2);
 
-
 //         vector<pair<int, int>> vec;
 
-//         vec.push_back({1,2});   
+//         vec.push_back({1,2});
 //         vec.emplace_back(1,2);
-
 
 //         vector<int> v(5, 100);     { 100, 100, 100, 100, 100};
 //         vector<int> v2(v);
-        
 
 //         cout << v2[0] <<endl;
 
@@ -79,14 +69,9 @@
 //         v.erase(v.begin());
 //         v.insert(v.begin()+1, 100);
 
-
 //     }
 
-
-
-
-//list
-
+// list
 
 // #include<bits/stdc++.h>
 // using namespace std;
@@ -100,27 +85,23 @@
 //     ls.emplace_front();
 // }
 
-//deque is same as ls
-
+// deque is same as ls
 
 // Stack..
 
 // set<int> s;   everythimg in the sorted order
-//auto it = st.find(3); it will return an iterator..
+// auto it = st.find(3); it will return an iterator..
 
-
-
-//MAP
-// keys are unique but the val can be different 
-// void explainMap() {
-//     map<int, int> mpp;
-//     map<int, pair<int, int>> mpp;
-//     map<pair<int, int>, int> mpp;
+// MAP
+//  keys are unique but the val can be different
+//  void explainMap() {
+//      map<int, int> mpp;
+//      map<int, pair<int, int>> mpp;
+//      map<pair<int, int>, int> mpp;
 
 //     mpp[1] = 2;
 //     mpp.emplace({3, 1});
 //     mpp.insert({2, 4});
-
 
 //     mpp({2, 3}) = 23;     // for third case..
 //     for(auto it : mpp) {
@@ -128,8 +109,6 @@
 //      }
 //      cout<< mpp[4];
 // }
-
-
 
 // ALGORITHIRM..
 // #include<bits/stdc++.h>
@@ -139,7 +118,6 @@
 //     sort(a, a + n);
 //     sort(v.begin(), v.end());
 //     sort(a, a + n, greater<int>);
-
 
 //     bool comp(pair<int, int>p1, pair<int, int>p2) {
 //         if(p1.second< p2.second) return true;
@@ -151,8 +129,6 @@
 //     pair<int, int>arr[] = {{1, 3}, {3, 4}, {6, 7}};
 //     sort(a, a+n, comp);
 // }
-
-
 
 // # include <bits/stdc++.h>
 // using namespace std;
@@ -169,16 +145,12 @@
 //      sort(ls.begin(), ls.end());   // nlog(n);
 //      for(auto it : ls) cout << it << " ";  // n
 //    }
-   
 
 //    int main() {
 //     int n;
 //     cin >> n;
 //     countDigits(n);
 //    }
-
-
-
 
 // GCD
 
@@ -197,8 +169,6 @@
 // int main() {
 
 // }
-
-
 
 // binary search
 
@@ -249,8 +219,7 @@
 //     recursion(1, n);
 // }
 
-
-//Checking if a string is a palindrome ot not
+// Checking if a string is a palindrome ot not
 
 // # include <bits/stdc++.h>
 // using namespace std;
@@ -269,9 +238,7 @@
 //     cout << f(0, s);
 // }
 
-
 // Hashing
-
 
 // # include <bits/stdc++.h>
 // using namespace std;
@@ -280,7 +247,6 @@
 //     string s;
 //     cin >> s;
 
-    
 //     int hash[25] = {0};
 //     for(int i =0; i < s.size(); i++) {
 //         hash[s[i]-'a']++;
@@ -295,7 +261,6 @@
 //     }
 //     return 0;
 // }
-
 
 // Hashing using maps
 
@@ -334,7 +299,6 @@
 //     return 0;
 // }
 
-
 // largest and second largest elements
 
 // # include <bits/stdc++.h>
@@ -371,11 +335,9 @@
 // }
 
 //   vector<int> ans = answer(arr, n);   //jive structure hunda si
-//   cout << ans[0] << " " << ans[1]; 
+//   cout << ans[0] << " " << ans[1];
 //     return 0;
 // }
-
-
 
 // rotate array by d elements
 
@@ -385,7 +347,7 @@
 //     d = d % n;
 //     int temp[d];
 //     for(int i = 0; i < d; i++) {
-//         temp[i] = arr[i]; 
+//         temp[i] = arr[i];
 //     }
 //     for(int i = d; i < n; i++) {
 //         arr[i-d] = arr[i];
@@ -404,8 +366,6 @@
 //     return 0;
 // }
 
-
-
 // Mover all the zeros to the right
 
 // # include <bits/stdc++.h>
@@ -420,7 +380,7 @@
 //         if(arr[i]!=0) {
 //             swap(arr[i], arr[j]); j++;
 //     }
-    
+
 //  }
 //  return arr;
 // }
@@ -428,7 +388,7 @@
 //     int n; cin >>n;
 //     vector<int> arr;
 //     for(int i =0; i < n; i++) {
-//         int x; cin >> x; 
+//         int x; cin >> x;
 //         arr.push_back(x);
 //     }
 //     vector<int> result = move(arr, n);
@@ -436,13 +396,12 @@
 //     return 0;
 // }
 
-
 // Union
 
 // # include<bits/stdc++.h>
 // using namespace std;
 // vector<int> Union(vector<int> &arr, vector<int> &brr, int n1, int n2) {
-//     int i = 0; 
+//     int i = 0;
 //     int j = 0;
 //     vector<int> unionarr;
 //     while(i < n1 && j < n2) {
@@ -451,9 +410,9 @@
 //                 unionarr.push_back(arr[i]);
 //             }
 //             i++;
-//             } 
+//             }
 //             else {
-                
+
 //                     if(unionarr.size() == 0 || unionarr.back() != brr[j]) {
 //                         unionarr.push_back(brr[j]);
 //                     }
@@ -461,7 +420,7 @@
 //             }
 //     }
 //     while(i < n1) {
-          
+
 //             if(unionarr.size() == 0 || unionarr.back() != arr[i]) {
 //                 unionarr.push_back(arr[i]);
 //             }
@@ -497,24 +456,23 @@
 //     return 0;
 // }
 
-
-//Intersection 
+// Intersection
 
 // # include<bits/stdc++.h>
 // using namespace std;
 
 // vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2) {
-//       int i = 0; 
-//       int j = 0; 
+//       int i = 0;
+//       int j = 0;
 //       vector<int>insertarr;
 //       while(i < n1 && j < n2) {
 //         if(arr[i] < brr[j]) i++;
-      
+
 //       else if(arr[i] > brr[j]) j++;
-//     else 
+//     else
 //     {
 //         insertarr.push_back(arr[i]);
-//         i++; j++; 
+//         i++; j++;
 //     }
 
 //     }
@@ -525,25 +483,24 @@
 //     cin >> n1;
 //     vector<int> arr;
 //     for(int i = 0; i < n1; i++) {
-//         int x; 
+//         int x;
 //         cin >> x;
 //         arr.push_back(x);
-//     }   
+//     }
 //     int n2;
 //     cin >> n2;
 //     vector<int> brr;
 //     for(int i = 0; i < n2; i++) {
-//         int y; 
+//         int y;
 //         cin >> y;
 //         brr.push_back(y);
-//     }   
+//     }
 //     vector<int> result = intersectionarr(arr, brr, n1, n2);
 //     for(auto it : result) {
 //         cout << it << " ";
 //     }
 //     return 0;
 // }
-
 
 // Finding missing number using xor
 
@@ -577,33 +534,73 @@
 //     return 0;
 // }
 
-
 // Maximum consequtuve ones
 
+// # include <bits/stdc++.h>
+// using namespace std;
+//     int conseq(vector<int> arr, int n) {
+//         int maxi = 0;
+//         int count = 0;
+//         for(int i = 0; i < n; i++) {
+//             if(arr[i] == 1) {
+//                 count++;
+//                 maxi = max(maxi, count);
+//             }
+//             else{
+//                 count = 0;
+//             }
+//         }
+//         return maxi;
+//     }
+// int main() {
+//     int n; cin >> n;
+//     vector<int> arr;
+//     for(int i =0; i < n; i++) {
+//         int x; cin >> x;
+//         arr.push_back(x);
+//     }
+//     cout << conseq(arr, n);
+//     return 0;
+// }
 
-# include <bits/stdc++.h>
+// Sub array
+
+#include <bits/stdc++.h>
 using namespace std;
-    int conseq(vector<int> arr, int n) {
-        int maxi = 0;
-        int count = 0;
-        for(int i = 0; i < n; i++) {
-            if(arr[i] == 1) {
-                count++;
-                maxi = max(maxi, count);
-            }
-            else{
-                count = 0;
-            }
+int subarray(vector<int> arr, int k)
+{
+    int sum = 0;
+    int n = arr.size();
+    int left = 0;
+    int right = 0;
+    int maxlen = 0;
+    for (int right = 0; right < n; right++)
+    {
+        sum += arr[right];
+        while (sum > k && left <= right)
+        {
+            sum -= arr[left];
+            left++;
         }
-        return maxi;
+        if (sum == k)
+            maxlen = max(maxlen, right - left + 1);
     }
-int main() {
-    int n; cin >> n;
+    return maxlen;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
     vector<int> arr;
-    for(int i =0; i < n; i++) {
-        int x; cin >> x;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
         arr.push_back(x);
     }
-    cout << conseq(arr, n);
+    int k;
+    cin >> k;
+    cout << subarray(arr, k);
     return 0;
 }
