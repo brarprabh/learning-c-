@@ -500,45 +500,78 @@
 
 //Intersection 
 
-# include<bits/stdc++.h>
-using namespace std;
+// # include<bits/stdc++.h>
+// using namespace std;
 
-vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2) {
-      int i = 0; 
-      int j = 0; 
-      vector<int>insertarr;
-      while(i < n1 && j < n2) {
-        if(arr[i] < brr[j]) i++;
+// vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2) {
+//       int i = 0; 
+//       int j = 0; 
+//       vector<int>insertarr;
+//       while(i < n1 && j < n2) {
+//         if(arr[i] < brr[j]) i++;
       
-      else if(arr[i] > brr[j]) j++;
-    else 
-    {
-        insertarr.push_back(arr[i]);
-        i++; j++; 
-    }
+//       else if(arr[i] > brr[j]) j++;
+//     else 
+//     {
+//         insertarr.push_back(arr[i]);
+//         i++; j++; 
+//     }
 
+//     }
+//     return insertarr;
+// }
+// int main() {
+//     int n1;
+//     cin >> n1;
+//     vector<int> arr;
+//     for(int i = 0; i < n1; i++) {
+//         int x; 
+//         cin >> x;
+//         arr.push_back(x);
+//     }   
+//     int n2;
+//     cin >> n2;
+//     vector<int> brr;
+//     for(int i = 0; i < n2; i++) {
+//         int y; 
+//         cin >> y;
+//         brr.push_back(y);
+//     }   
+//     vector<int> result = intersectionarr(arr, brr, n1, n2);
+//     for(auto it : result) {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+
+// Finding missing number using xor
+
+# include <bits/stdc++.h>
+using namespace std;
+    vector<int> missing(vector<int> &arr, int n){
+        int N = n - 1;  // since one number is missing
+        int Xor1 = 0, Xor2 = 0;
+        vector<int> ans;
+        for(int i = 0; i < N; i++) {
+            Xor2 = Xor2 ^ arr[i];
+            Xor1 = Xor1 ^ (i+1);
+        }
+        Xor1 = Xor1 ^ n;
+        ans.push_back(Xor1 ^ Xor2);
+        return ans;
     }
-    return insertarr;
-}
 int main() {
-    int n1;
-    cin >> n1;
+    int n;
+    cin >> n;
     vector<int> arr;
-    for(int i = 0; i < n1; i++) {
-        int x; 
+    for(int i = 0; i < n; i++) {
+        int x;
         cin >> x;
         arr.push_back(x);
-    }   
-    int n2;
-    cin >> n2;
-    vector<int> brr;
-    for(int i = 0; i < n2; i++) {
-        int y; 
-        cin >> y;
-        brr.push_back(y);
-    }   
-    vector<int> result = intersectionarr(arr, brr, n1, n2);
-    for(auto it : result) {
+    }
+    vector<int> answer = missing( arr, n);
+    for(auto it : answer) {
         cout << it << " ";
     }
     return 0;
