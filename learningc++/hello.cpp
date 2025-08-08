@@ -607,24 +607,112 @@
 
 // Two sum problem
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> twosum(vector<int> arr, int n, int target)
+// {
+//     map<int, int> mpp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int num = arr[i];
+//         int more = target - num;
+//         if (mpp.find(more) != mpp.end())
+//         {
+//             cout << "Yes" << endl;
+//             return {mpp[more], i};
+//         }
+//         mpp[i] = num; // index ta store krna hi aa na...
+//     }
+//     return {-1, -1};
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int target;
+//     cin >> target;
+//     vector<int> answer = twosum(arr, n, target);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// optimal solution for two sum problem
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// string twosum(vector<int> arr, int n, int target)
+// {
+//     int right = 0;
+//     int left = n - 1;
+//     while (right < left)
+//     {
+//         int sum = arr[right] + arr[left];
+//         if (sum == target)
+//         {
+//             return "Yes";
+//         }
+//         else if (sum < target)
+//             right++;
+//         else
+//             left--;
+//     }
+//     return "No";
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int target;
+//     cin >> target;
+//     string answer = twosum(arr, n, target);
+//     cout << answer;
+//     return 0;
+// }
+
+// Dutch national flag algorithm
+
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> twosum(vector<int> arr, int n, int target)
+void dutch(vector<int> &arr, int n)
 {
-    map<int, int> mpp;
-    for (int i = 0; i < n; i++)
+    int low = 0, mid = 0, high = n - 1;
+    while (mid <= high)
     {
-        int num = arr[i];
-        int more = target - num;
-        if (mpp.find(more) != mpp.end())
+        if (arr[mid] == 0)
         {
-            cout << "Yes" << endl;
-            return {mpp[more], i};
+            swap(arr[mid], arr[low]);
+            low++;
+            mid++;
         }
-        mpp[i] = num; // index ta store krna hi aa na...
+        else if (arr[mid] == 1)
+        {
+            mid++;
+        }
+        else
+        {
+            swap(arr[mid], arr[high]);
+            high--;
+        }
     }
-    return {-1, -1};
 }
+
 int main()
 {
     int n;
@@ -636,10 +724,8 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    int target;
-    cin >> target;
-    vector<int> answer = twosum(arr, n, target);
-    for (auto it : answer)
+    dutch(arr, n);
+    for (auto it : arr)
     {
         cout << it << " ";
     }
