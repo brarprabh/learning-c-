@@ -734,22 +734,67 @@
 
 // Finding majority elements
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// void maj(vector<int> arr, int n)
+// {
+//     map<int, int> mpp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         mpp[arr[i]]++;
+//     }
+//     for (auto it : mpp)
+//     {
+//         if (it.second > n / 2)
+//         {
+//             cout << it.first;
+//         }
+//     }
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     maj(arr, n);
+//     return 0;
+// }
+
+// majority element using moore algorithm
+
 #include <bits/stdc++.h>
 using namespace std;
-void maj(vector<int> arr, int n)
+int maj(vector<int> arr, int n)
 {
-    map<int, int> mpp;
+    int count = 0, cnt = 0;
+    int el;
     for (int i = 0; i < n; i++)
     {
-        mpp[arr[i]]++;
-    }
-    for (auto it : mpp)
-    {
-        if (it.second > n / 2)
+        if (count == 0)
         {
-            cout << it.first;
+            el = arr[i];
+            count = 1;
         }
+        else if (el == arr[i])
+            count++;
+        else
+            count--;
     }
+    for (int i = 0; i < n; i++)
+    {
+        if (el == arr[i])
+            cnt++;
+    }
+    if (cnt > n / 2)
+        return el;
+    else
+        return -1;
 }
 int main()
 {
@@ -762,6 +807,6 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    maj(arr, n);
+    cout << maj(arr, n);
     return 0;
 }
