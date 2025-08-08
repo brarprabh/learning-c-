@@ -768,33 +768,74 @@
 
 // majority element using moore algorithm
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// int maj(vector<int> arr, int n)
+// {
+//     int count = 0, cnt = 0;
+//     int el;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (count == 0)
+//         {
+//             el = arr[i];
+//             count = 1;
+//         }
+//         else if (el == arr[i])
+//             count++;
+//         else
+//             count--;
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (el == arr[i])
+//             cnt++;
+//     }
+//     if (cnt > n / 2)
+//         return el;
+//     else
+//         return -1;
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     cout << maj(arr, n);
+//     return 0;
+// }
+
+// Kadane algorithm to find sum of longest subarray
+
 #include <bits/stdc++.h>
 using namespace std;
-int maj(vector<int> arr, int n)
+int longestsum(vector<int> arr, int n)
 {
-    int count = 0, cnt = 0;
-    int el;
+    int startind = -1, endind = -1, start = -1;
+    int sum = 0;
+    int maxi = INT_MIN;
     for (int i = 0; i < n; i++)
     {
-        if (count == 0)
+        if (sum == 0)
+            start = i;
+        sum += arr[i];
+        if (sum > maxi)
         {
-            el = arr[i];
-            count = 1;
+            maxi = sum;
+            startind = start;
+            endind = i;
         }
-        else if (el == arr[i])
-            count++;
-        else
-            count--;
+        else if (sum < 0)
+            sum = 0;
     }
-    for (int i = 0; i < n; i++)
-    {
-        if (el == arr[i])
-            cnt++;
-    }
-    if (cnt > n / 2)
-        return el;
-    else
-        return -1;
+    cout << startind << " " << endind << endl;
+    return maxi;
 }
 int main()
 {
@@ -807,6 +848,6 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    cout << maj(arr, n);
+    cout << longestsum(arr, n);
     return 0;
 }
