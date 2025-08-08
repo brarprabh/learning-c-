@@ -565,29 +565,66 @@
 
 // Sub array
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// int subarray(vector<int> arr, int k)
+// {
+//     int sum = 0;
+//     int n = arr.size();
+//     int left = 0;
+//     int right = 0;
+//     int maxlen = 0;
+//     for (int right = 0; right < n; right++)
+//     {
+//         sum += arr[right];
+//         while (sum > k && left <= right)
+//         {
+//             sum -= arr[left];
+//             left++;
+//         }
+//         if (sum == k)
+//             maxlen = max(maxlen, right - left + 1);
+//     }
+//     return maxlen;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int k;
+//     cin >> k;
+//     cout << subarray(arr, k);
+//     return 0;
+// }
+
+// Two sum problem
+
 #include <bits/stdc++.h>
 using namespace std;
-int subarray(vector<int> arr, int k)
+vector<int> twosum(vector<int> arr, int n, int target)
 {
-    int sum = 0;
-    int n = arr.size();
-    int left = 0;
-    int right = 0;
-    int maxlen = 0;
-    for (int right = 0; right < n; right++)
+    map<int, int> mpp;
+    for (int i = 0; i < n; i++)
     {
-        sum += arr[right];
-        while (sum > k && left <= right)
+        int num = arr[i];
+        int more = target - num;
+        if (mpp.find(more) != mpp.end())
         {
-            sum -= arr[left];
-            left++;
+            cout << "Yes" << endl;
+            return {mpp[more], i};
         }
-        if (sum == k)
-            maxlen = max(maxlen, right - left + 1);
+        mpp[i] = num; // index ta store krna hi aa na...
     }
-    return maxlen;
+    return {-1, -1};
 }
-
 int main()
 {
     int n;
@@ -599,8 +636,12 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    int k;
-    cin >> k;
-    cout << subarray(arr, k);
+    int target;
+    cin >> target;
+    vector<int> answer = twosum(arr, n, target);
+    for (auto it : answer)
+    {
+        cout << it << " ";
+    }
     return 0;
 }
