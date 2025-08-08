@@ -686,33 +686,71 @@
 //     return 0;
 // }
 
-// Dutch national flag algorithm
+// Dutch national flag algorithm sorting 0'1'2..
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// void dutch(vector<int> &arr, int n)
+// {
+//     int low = 0, mid = 0, high = n - 1;
+//     while (mid <= high)
+//     {
+//         if (arr[mid] == 0)
+//         {
+//             swap(arr[mid], arr[low]);
+//             low++;
+//             mid++;
+//         }
+//         else if (arr[mid] == 1)
+//         {
+//             mid++;
+//         }
+//         else
+//         {
+//             swap(arr[mid], arr[high]);
+//             high--;
+//         }
+//     }
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     dutch(arr, n);
+//     for (auto it : arr)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// Finding majority elements
 
 #include <bits/stdc++.h>
 using namespace std;
-void dutch(vector<int> &arr, int n)
+void maj(vector<int> arr, int n)
 {
-    int low = 0, mid = 0, high = n - 1;
-    while (mid <= high)
+    map<int, int> mpp;
+    for (int i = 0; i < n; i++)
     {
-        if (arr[mid] == 0)
+        mpp[arr[i]]++;
+    }
+    for (auto it : mpp)
+    {
+        if (it.second > n / 2)
         {
-            swap(arr[mid], arr[low]);
-            low++;
-            mid++;
-        }
-        else if (arr[mid] == 1)
-        {
-            mid++;
-        }
-        else
-        {
-            swap(arr[mid], arr[high]);
-            high--;
+            cout << it.first;
         }
     }
 }
-
 int main()
 {
     int n;
@@ -724,10 +762,6 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    dutch(arr, n);
-    for (auto it : arr)
-    {
-        cout << it << " ";
-    }
+    maj(arr, n);
     return 0;
 }
