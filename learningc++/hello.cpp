@@ -854,19 +854,107 @@
 
 // DP on buy and sell
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// int buyorsell(vector<int> arr, int n)
+// {
+//     int mini = arr[0];
+//     int maxprofit = 0;
+//     for (int i = 1; i < n; i++)
+//     {
+//         int cost = arr[i] - mini;
+//         maxprofit = max(maxprofit, cost);
+//         mini = min(mini, arr[i]);
+//     }
+//     return maxprofit;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     cout << buyorsell(arr, n);
+//     return 0;
+//}
+
+// num to arrange at positive and negative indexes
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> arrange(vector<int> &arr, int n)
+// {
+//     vector<int> answer(n, 0);
+//     int pos = 0;
+//     int neg = 1;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] < 0)
+//         {
+//             answer[pos] = arr[i];
+//             pos += 2;
+//         }
+//         else if (arr[i] > 0)
+//         {
+//             answer[neg] = arr[i];
+//             neg += 2;
+//         }
+//     }
+//     return answer;
+// }
+// int main()
+// {
+
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer;
+//     answer = arrange(arr, n);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// neg and postive are greater than each other
+
 #include <bits/stdc++.h>
 using namespace std;
-int buyorsell(vector<int> arr, int n)
+vector<int> arrange(vector<int> arr, int n)
 {
-    int mini = arr[0];
-    int maxprofit = 0;
-    for (int i = 1; i < n; i++)
+    vector<int> pos, neg;
+    for (int i = 0; i < n; i++)
     {
-        int cost = arr[i] - mini;
-        maxprofit = max(maxprofit, cost);
-        mini = min(mini, arr[i]);
+        if (arr[i] > 0)
+            pos.push_back(arr[i]);
+        else if (arr[i] < 0)
+            neg.push_back(arr[i]);
     }
-    return maxprofit;
+    vector<int> result;
+    int i = 0, j = 0;
+    while (i < pos.size() && j < neg.size())
+    {
+        result.push_back(pos[i++]);
+        result.push_back(neg[j++]);
+    }
+    while (i < pos.size())
+        result.push_back(pos[i++]);
+    while (j < neg.size())
+        result.push_back(neg[j++]);
+    return result;
 }
 
 int main()
@@ -880,6 +968,11 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    cout << buyorsell(arr, n);
+    vector<int> answer;
+    answer = arrange(arr, n);
+    for (auto it : answer)
+    {
+        cout << it << " ";
+    }
     return 0;
 }
