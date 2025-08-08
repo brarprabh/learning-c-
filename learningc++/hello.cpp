@@ -813,30 +813,62 @@
 
 // Kadane algorithm to find sum of longest subarray
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// int longestsum(vector<int> arr, int n)
+// {
+//     int startind = -1, endind = -1, start = -1;
+//     int sum = 0;
+//     int maxi = INT_MIN;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (sum == 0)
+//             start = i;
+//         sum += arr[i];
+//         if (sum > maxi)
+//         {
+//             maxi = sum;
+//             startind = start;
+//             endind = i;
+//         }
+//         else if (sum < 0)
+//             sum = 0;
+//     }
+//     cout << startind << " " << endind << endl;
+//     return maxi;
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     cout << longestsum(arr, n);
+//     return 0;
+// }
+
+// DP on buy and sell
+
 #include <bits/stdc++.h>
 using namespace std;
-int longestsum(vector<int> arr, int n)
+int buyorsell(vector<int> arr, int n)
 {
-    int startind = -1, endind = -1, start = -1;
-    int sum = 0;
-    int maxi = INT_MIN;
-    for (int i = 0; i < n; i++)
+    int mini = arr[0];
+    int maxprofit = 0;
+    for (int i = 1; i < n; i++)
     {
-        if (sum == 0)
-            start = i;
-        sum += arr[i];
-        if (sum > maxi)
-        {
-            maxi = sum;
-            startind = start;
-            endind = i;
-        }
-        else if (sum < 0)
-            sum = 0;
+        int cost = arr[i] - mini;
+        maxprofit = max(maxprofit, cost);
+        mini = min(mini, arr[i]);
     }
-    cout << startind << " " << endind << endl;
-    return maxi;
+    return maxprofit;
 }
+
 int main()
 {
     int n;
@@ -848,6 +880,6 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    cout << longestsum(arr, n);
+    cout << buyorsell(arr, n);
     return 0;
 }
