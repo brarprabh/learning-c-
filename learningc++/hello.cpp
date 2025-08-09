@@ -1024,25 +1024,66 @@
 
 // Leaders in an array
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<int> leader(vector<int> arr, int n)
+// {
+//     int maxi = INT_MIN;
+//     vector<int> answer;
+//     for (int i = n - 1; i > 0; i--)
+//     {
+//         if (arr[i] > maxi)
+//         {
+//             answer.push_back(arr[i]);
+//         }
+//         maxi = max(maxi, arr[i]);
+//     }
+//     reverse(answer.begin(), answer.end());
+//     return answer;
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer = leader(arr, n);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// Maximum consecutive number
+
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<int> leader(vector<int> arr, int n)
+int maxcon(vector<int> arr, int n)
 {
-    int maxi = INT_MIN;
-    vector<int> answer;
-    for (int i = n - 1; i > 0; i--)
+    if (n == 0)
+        return 0;
+    // sort(arr.begin(), arr.end());
+    int longest = 1, count = 1;
+    for (int i = 1; i < n; i++)
     {
-        if (arr[i] > maxi)
-        {
-            answer.push_back(arr[i]);
-        }
-        maxi = max(maxi, arr[i]);
+        if (arr[i] == arr[i - 1] + 1)
+            count++;
+        else
+            count = 1;
+        longest = max(longest, count);
     }
-    reverse(answer.begin(), answer.end());
-    return answer;
+    return longest;
 }
+
 int main()
+
 {
     int n;
     cin >> n;
@@ -1053,10 +1094,7 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    vector<int> answer = leader(arr, n);
-    for (auto it : answer)
-    {
-        cout << it << " ";
-    }
+    int longest = maxcon(arr, n);
+    cout << longest;
     return 0;
 }
