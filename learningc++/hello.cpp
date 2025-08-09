@@ -1,14 +1,18 @@
-// # include<bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
-//     void printpattern(int n){
-//         for(int i = 0; i < n; i++) {
-//             for(int j = n - i; j > 0; j--) {
-//                 cout << "* ";
-//             }
-//             cout << endl;
+// void printpattern(int n)
+// {
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = n - i; j > 0; j--)
+//         {
+//             cout << "* ";
 //         }
+//         cout << endl;
 //     }
-// int main() {
+// }
+// int main()
+// {
 //     int n;
 //     cin >> n;
 //     printpattern(n);
@@ -110,7 +114,8 @@
 //      cout<< mpp[4];
 // }
 
-// ALGORITHIRM..
+// ALGORITHIRM.. For Comparator
+
 // #include<bits/stdc++.h>
 // using namespace std;
 
@@ -120,7 +125,7 @@
 //     sort(a, a + n, greater<int>);
 
 //     bool comp(pair<int, int>p1, pair<int, int>p2) {
-//         if(p1.second< p2.second) return true;
+//         if(p1.second < p2.second) return true;
 //         if(p1.second > p2.second) return false;
 
 //         if(p1.first > p2.first) return true;
@@ -129,6 +134,8 @@
 //     pair<int, int>arr[] = {{1, 3}, {3, 4}, {6, 7}};
 //     sort(a, a+n, comp);
 // }
+
+//  Count the number of factors...
 
 // # include <bits/stdc++.h>
 // using namespace std;
@@ -164,10 +171,6 @@
 //     }
 //     if(a == 0) cout << b;
 //     else cout << a;
-// }
-
-// int main() {
-
 // }
 
 // binary search
@@ -240,24 +243,27 @@
 
 // Hashing
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
 
-// int main() {
+// int main()
+// {
 //     string s;
 //     cin >> s;
 
 //     int hash[25] = {0};
-//     for(int i =0; i < s.size(); i++) {
-//         hash[s[i]-'a']++;
+//     for (int i = 0; i < s.size(); i++)
+//     {
+//         hash[s[i] - 'a']++;
 //     }
 //     int q;
 //     cin >> q;
 
-//     while(q--) {
+//     while (q--)
+//     {
 //         char ch;
 //         cin >> ch;
-//         cout << hash[ch- 'a'];   // galti alert solved
+//         cout << hash[ch - 'a']; // galti alert solved
 //     }
 //     return 0;
 // }
@@ -350,10 +356,10 @@
 //         temp[i] = arr[i];
 //     }
 //     for(int i = d; i < n; i++) {
-//         arr[i-d] = arr[i];
+//         arr[i-d] = arr[i];  // 0 toh start hoyo ga..
 //     }
 //     for(int i = n-d; i < n; i++) { // kyunki more than d h skde aa
-//         arr[i] = temp[i - (n-d)];
+//         arr[i] = temp[i - (n-d)];   // temp vich 0 toh store aa...
 //     }
 // }
 // int main() {
@@ -366,7 +372,7 @@
 //     return 0;
 // }
 
-// Mover all the zeros to the right
+// Moves all the zeros to the right
 
 // # include <bits/stdc++.h>
 // using namespace std;
@@ -380,7 +386,6 @@
 //         if(arr[i]!=0) {
 //             swap(arr[i], arr[j]); j++;
 //     }
-
 //  }
 //  return arr;
 // }
@@ -396,63 +401,58 @@
 //     return 0;
 // }
 
-// Union
+// Union using 2 pointer approach
 
-// # include<bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
-// vector<int> Union(vector<int> &arr, vector<int> &brr, int n1, int n2) {
-//     int i = 0;
-//     int j = 0;
-//     vector<int> unionarr;
-//     while(i < n1 && j < n2) {
-//         if(arr[i] <= brr[j])  {
-//             if(unionarr.size() == 0 || unionarr.back() != arr[i]) {
-//                 unionarr.push_back(arr[i]);
-//             }
-//             i++;
-//             }
-//             else {
 
-//                     if(unionarr.size() == 0 || unionarr.back() != brr[j]) {
-//                         unionarr.push_back(brr[j]);
-//                     }
-//                     j++;
-//             }
-//     }
-//     while(i < n1) {
+// // Function to find the union of two sorted arrays
+// vector<int> findUnion(const vector<int>& arr, const vector<int>& brr) {
+//     int i = 0, j = 0;
+//     vector<int> result;
+//     int n1 = arr.size(), n2 = brr.size();
 
-//             if(unionarr.size() == 0 || unionarr.back() != arr[i]) {
-//                 unionarr.push_back(arr[i]);
-//             }
-//             i++;
-//         }
-//         while(j < n2) {
-//             if(unionarr.size() == 0 || unionarr.back() != brr[j]) {
-//                 unionarr.push_back(brr[j]);
-//             }
+//     while (i < n1 && j < n2) {
+//         // Avoid duplicates in result
+//         int val;
+//         if (arr[i] < brr[j]) {
+//             val = arr[i++];
+//         } else if (arr[i] > brr[j]) {
+//             val = brr[j++];
+//         } else {
+//             val = arr[i++];
 //             j++;
 //         }
-//         return unionarr;
+//         if (result.empty() || result.back() != val)
+//             result.push_back(val);
+//     }
+//     // Add remaining elements from arr
+//     while (i < n1) {
+//         if (result.empty() || result.back() != arr[i])
+//             result.push_back(arr[i]);
+//         i++;
+//     }
+//     // Add remaining elements from brr
+//     while (j < n2) {
+//         if (result.empty() || result.back() != brr[j])
+//             result.push_back(brr[j]);
+//         j++;
+//     }
+//     return result;
 // }
+
 // int main() {
-//     int n1;
+//     int n1, n2;
 //     cin >> n1;
-//     vector<int> arr;
-//     for(int i = 0; i < n1; i++) {
-//         int x;
-//         cin >> x;
-//         arr.push_back(x);
-//     }
-//     int n2;
+//     vector<int> arr(n1);
+//     for (int i = 0; i < n1; i++) cin >> arr[i];
+
 //     cin >> n2;
-//     vector<int> brr;
-//     for(int i = 0; i < n2; i++) {
-//         int y;
-//         cin >> y;
-//         brr.push_back(y);
-//     }
-//     vector<int> result = Union(arr, brr, n1, n2);
-//     for(auto it :result) { cout<< it <<" "; }
+//     vector<int> brr(n2);
+//     for (int i = 0; i < n2; i++) cin >> brr[i];
+
+//     vector<int> result = findUnion(arr, brr);
+//     for (int num : result) cout << num << " ";
 //     return 0;
 // }
 
@@ -511,8 +511,8 @@
 //         int Xor1 = 0, Xor2 = 0;
 //         vector<int> ans;
 //         for(int i = 0; i < N; i++) {
-//             Xor2 = Xor2 ^ arr[i];
-//             Xor1 = Xor1 ^ (i+1);
+//             Xor2 = Xor2 ^ arr[i];  // array is 0 based indexing
+//             Xor1 = Xor1 ^ (i+1); // to store all natural number
 //         }
 //         Xor1 = Xor1 ^ n;
 //         ans.push_back(Xor1 ^ Xor2);
@@ -789,7 +789,7 @@
 //     for (int i = 0; i < n; i++)
 //     {
 //         if (el == arr[i])
-//             cnt++;
+//             cnt++; // to check if its the majority element or not
 //     }
 //     if (cnt > n / 2)
 //         return el;
@@ -931,32 +931,78 @@
 
 // neg and postive are greater than each other
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<int> arrange(vector<int> arr, int n)
+// {
+//     vector<int> pos, neg;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] > 0)
+//             pos.push_back(arr[i]);
+//         else if (arr[i] < 0)
+//             neg.push_back(arr[i]);
+//     }
+//     vector<int> result;
+//     int i = 0, j = 0;
+//     while (i < pos.size() && j < neg.size())
+//     {
+//         result.push_back(pos[i++]);
+//         result.push_back(neg[j++]);
+//     }
+//     while (i < pos.size())
+//         result.push_back(pos[i++]);
+//     while (j < neg.size())
+//         result.push_back(neg[j++]);
+//     return result;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer;
+//     answer = arrange(arr, n);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// Permutations..
+
 #include <bits/stdc++.h>
 using namespace std;
-vector<int> arrange(vector<int> arr, int n)
+void per(vector<int> &arr, int n)
 {
-    vector<int> pos, neg;
-    for (int i = 0; i < n; i++)
+    int index = -1;
+    for (int i = n - 2; i > 0; i--)
     {
-        if (arr[i] > 0)
-            pos.push_back(arr[i]);
-        else if (arr[i] < 0)
-            neg.push_back(arr[i]);
+        if (arr[i] < arr[i + 1])
+        {
+            index = i;
+            break;
+        }
     }
-    vector<int> result;
-    int i = 0, j = 0;
-    while (i < pos.size() && j < neg.size())
+    if (index == -1)
+        reverse(arr.begin(), arr.end());
+    for (int i = n - 1; i > index; i--)
     {
-        result.push_back(pos[i++]);
-        result.push_back(neg[j++]);
+        if (arr[i] > arr[index])
+        {
+            swap(arr[i], arr[index]);
+        } // since ek element nal compare krna
     }
-    while (i < pos.size())
-        result.push_back(pos[i++]);
-    while (j < neg.size())
-        result.push_back(neg[j++]);
-    return result;
+    reverse(arr.begin() + index + 1, arr.end());
 }
-
 int main()
 {
     int n;
@@ -968,11 +1014,10 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    vector<int> answer;
-    answer = arrange(arr, n);
-    for (auto it : answer)
+    per(arr, n);
+    for (auto it : arr)
     {
-        cout << it << " ";
+        cout << it;
     }
     return 0;
 }
