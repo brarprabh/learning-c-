@@ -1063,38 +1063,116 @@
 
 // Maximum consecutive number
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// int maxcon(vector<int> arr, int n)
+// {
+//     if (n == 0)
+//         return 0;
+//     // sort(arr.begin(), arr.end());
+//     int longest = 1, count = 1;
+//     for (int i = 1; i < n; i++)
+//     {
+//         if (arr[i] == arr[i - 1] + 1)
+//             count++;
+//         else
+//             count = 1;
+//         longest = max(longest, count);
+//     }
+//     return longest;
+// }
+
+// int main()
+
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int longest = maxcon(arr, n);
+//     cout << longest;
+//     return 0;
+// }
+
+// Set matrix zeros
+
 #include <bits/stdc++.h>
 using namespace std;
-int maxcon(vector<int> arr, int n)
+
+vector<vector<int>> setzero(int n, int m, vector<vector<int>> matrix)
 {
-    if (n == 0)
-        return 0;
-    // sort(arr.begin(), arr.end());
-    int longest = 1, count = 1;
+    // col = matrix[0][..]
+    // row = matrix[..][0]
+    int col0 = 1;
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            if (matrix[i][j] == 0)
+            {
+                matrix[i][0] = 0;
+                if (j != 0)
+                    matrix[0][j] = 0;
+                else
+                    col0 = 0;
+            }
+        }
+    }
     for (int i = 1; i < n; i++)
     {
-        if (arr[i] == arr[i - 1] + 1)
-            count++;
-        else
-            count = 1;
-        longest = max(longest, count);
+        for (int j = 1; j < m; j++)
+        {
+            if (matrix[i][j] != 0)
+            {
+                if (matrix[0][j] == 0 || matrix[i][0] == 0)
+                {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
     }
-    return longest;
+    if (matrix[0][0] == 0)
+    {
+        for (int j = 0; j < m; j++)
+
+            matrix[0][j] == 0;
+    }
+    if (col0 == 0)
+    {
+        for (int i = 0; i < n; i++)
+        {
+            matrix[i][0] = 0;
+        }
+    }
+    return matrix;
 }
 
 int main()
-
 {
     int n;
     cin >> n;
-    vector<int> arr;
+    int m;
+    cin >> m;
+    vector<vector<int>> matrix(n, vector<int>(m));
+
     for (int i = 0; i < n; i++)
     {
-        int x;
-        cin >> x;
-        arr.push_back(x);
+        for (int j = 0; j < m; j++)
+        {
+            cin >> matrix[i][j];
+        }
     }
-    int longest = maxcon(arr, n);
-    cout << longest;
-    return 0;
+    vector<vector<int>> answer = setzero(n, m, matrix);
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = 0; j < m; j++)
+        {
+            cout << answer[i][j];
+        }
+    }
 }
