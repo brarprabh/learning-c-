@@ -1179,47 +1179,114 @@
 
 // Rotate matrix by 90 degree
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// void rotate90(int n, int m, vector<vector<int>> &matrix)
+// {
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < i; j++)
+//         {
+//             swap(matrix[i][j], matrix[j][i]);
+//         }
+//     }
+//     for (int i = 0; i < n; i++)
+//     {
+//         reverse(matrix[i].begin(), matrix[i].end());
+//     }
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     int m;
+//     cin >> m;
+
+//     vector<vector<int>> matrix(n, vector<int>(m));
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < m; j++)
+//         {
+//             cin >> matrix[i][j];
+//         }
+//     }
+//     rotate90(n, m, matrix);
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < m; j++)
+//         {
+//             cout << matrix[i][j] << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+// Spiral matrix
+
 #include <bits/stdc++.h>
 using namespace std;
-void rotate90(int n, int m, vector<vector<int>> &matrix)
-{
 
-    for (int i = 0; i < n; i++)
+vector<int> spiralmat(int n, int m, vector<vector<int>> arr)
+{
+    int left = 0;
+    int right = m - 1;
+    int top = 0;
+    int bottom = n - 1;
+    vector<int> answer;
+    while (left <= right && top <= bottom)
     {
-        for (int j = 0; j < i; j++)
+        for (int i = left; i <= right; i++)
         {
-            swap(matrix[i][j], matrix[j][i]);
+            answer.push_back(arr[top][i]);
+        }
+        top++;
+        for (int i = top; i <= bottom; i++)
+        {
+            answer.push_back(arr[i][right]);
+        }
+        right--;
+        if (top <= bottom)
+        {
+            for (int i = right; i >= left; i--)
+            {
+                answer.push_back(arr[bottom][i]);
+            }
+            bottom--;
+        }
+        if (left <= right)
+        {
+            for (int i = bottom; i >= top; i--)
+            {
+                answer.push_back(arr[i][left]);
+            }
+            left++;
         }
     }
-    for (int i = 0; i < n; i++)
-    {
-        reverse(matrix[i].begin(), matrix[i].end());
-    }
+    return answer;
 }
+
 int main()
 {
     int n;
     cin >> n;
     int m;
     cin >> m;
-
-    vector<vector<int>> matrix(n, vector<int>(m));
+    vector<vector<int>> arr(n, vector<int>(m));
 
     for (int i = 0; i < n; i++)
     {
         for (int j = 0; j < m; j++)
         {
-            cin >> matrix[i][j];
+            cin >> arr[i][j];
         }
     }
-    rotate90(n, m, matrix);
-    for (int i = 0; i < n; i++)
+    vector<int> answer = spiralmat(n, m, arr);
+    for (auto it : answer)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cout << matrix[i][j] << " ";
-        }
-        cout << endl;
+        cout << it << " ";
     }
     return 0;
 }
