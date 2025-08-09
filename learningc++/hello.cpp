@@ -979,29 +979,68 @@
 
 // Permutations..
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// void per(vector<int> &arr, int n)
+// {
+//     int index = -1;
+//     for (int i = n - 2; i > 0; i--)
+//     {
+//         if (arr[i] < arr[i + 1])
+//         {
+//             index = i;
+//             break;
+//         }
+//     }
+//     if (index == -1)
+//         reverse(arr.begin(), arr.end());
+//     for (int i = n - 1; i > index; i--)
+//     {
+//         if (arr[i] > arr[index])
+//         {
+//             swap(arr[i], arr[index]);
+//         } // since ek element nal compare krna
+//     }
+//     reverse(arr.begin() + index + 1, arr.end());
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     per(arr, n);
+//     for (auto it : arr)
+//     {
+//         cout << it;
+//     }
+//     return 0;
+// }
+
+// Leaders in an array
+
 #include <bits/stdc++.h>
 using namespace std;
-void per(vector<int> &arr, int n)
+
+vector<int> leader(vector<int> arr, int n)
 {
-    int index = -1;
-    for (int i = n - 2; i > 0; i--)
+    int maxi = INT_MIN;
+    vector<int> answer;
+    for (int i = n - 1; i > 0; i--)
     {
-        if (arr[i] < arr[i + 1])
+        if (arr[i] > maxi)
         {
-            index = i;
-            break;
+            answer.push_back(arr[i]);
         }
+        maxi = max(maxi, arr[i]);
     }
-    if (index == -1)
-        reverse(arr.begin(), arr.end());
-    for (int i = n - 1; i > index; i--)
-    {
-        if (arr[i] > arr[index])
-        {
-            swap(arr[i], arr[index]);
-        } // since ek element nal compare krna
-    }
-    reverse(arr.begin() + index + 1, arr.end());
+    reverse(answer.begin(), answer.end());
+    return answer;
 }
 int main()
 {
@@ -1014,10 +1053,10 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    per(arr, n);
-    for (auto it : arr)
+    vector<int> answer = leader(arr, n);
+    for (auto it : answer)
     {
-        cout << it;
+        cout << it << " ";
     }
     return 0;
 }
