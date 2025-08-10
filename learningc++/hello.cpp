@@ -1226,67 +1226,106 @@
 
 // Spiral matrix
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<int> spiralmat(int n, int m, vector<vector<int>> arr)
+// {
+//     int left = 0;
+//     int right = m - 1;
+//     int top = 0;
+//     int bottom = n - 1;
+//     vector<int> answer;
+//     while (left <= right && top <= bottom)
+//     {
+//         for (int i = left; i <= right; i++)
+//         {
+//             answer.push_back(arr[top][i]);
+//         }
+//         top++;
+//         for (int i = top; i <= bottom; i++)
+//         {
+//             answer.push_back(arr[i][right]);
+//         }
+//         right--;
+//         if (top <= bottom)
+//         {
+//             for (int i = right; i >= left; i--)
+//             {
+//                 answer.push_back(arr[bottom][i]);
+//             }
+//             bottom--;
+//         }
+//         if (left <= right)
+//         {
+//             for (int i = bottom; i >= top; i--)
+//             {
+//                 answer.push_back(arr[i][left]);
+//             }
+//             left++;
+//         }
+//     }
+//     return answer;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     int m;
+//     cin >> m;
+//     vector<vector<int>> arr(n, vector<int>(m));
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         for (int j = 0; j < m; j++)
+//         {
+//             cin >> arr[i][j];
+//         }
+//     }
+//     vector<int> answer = spiralmat(n, m, arr);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// Selection sort
+
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<int> spiralmat(int n, int m, vector<vector<int>> arr)
+void selectionsort(int arr[], int n)
 {
-    int left = 0;
-    int right = m - 1;
-    int top = 0;
-    int bottom = n - 1;
-    vector<int> answer;
-    while (left <= right && top <= bottom)
+    for (int i = 0; i < n - 1; i++)
     {
-        for (int i = left; i <= right; i++)
+        int mini = i;
+        for (int j = i + 1; j < n; j++)
         {
-            answer.push_back(arr[top][i]);
-        }
-        top++;
-        for (int i = top; i <= bottom; i++)
-        {
-            answer.push_back(arr[i][right]);
-        }
-        right--;
-        if (top <= bottom)
-        {
-            for (int i = right; i >= left; i--)
+            if (arr[j] < arr[mini])
             {
-                answer.push_back(arr[bottom][i]);
+                mini = j;
             }
-            bottom--;
         }
-        if (left <= right)
-        {
-            for (int i = bottom; i >= top; i--)
-            {
-                answer.push_back(arr[i][left]);
-            }
-            left++;
-        }
+        int temp = arr[mini];
+        arr[mini] = arr[i];
+        arr[i] = temp;
     }
-    return answer;
 }
-
 int main()
 {
     int n;
     cin >> n;
-    int m;
-    cin >> m;
-    vector<vector<int>> arr(n, vector<int>(m));
+    int arr[n];
 
     for (int i = 0; i < n; i++)
     {
-        for (int j = 0; j < m; j++)
-        {
-            cin >> arr[i][j];
-        }
+        cin >> arr[i];
     }
-    vector<int> answer = spiralmat(n, m, arr);
-    for (auto it : answer)
+    selectionsort(arr, n);
+    for (int i = 0; i < n; i++)
     {
-        cout << it << " ";
+        cout << arr[i] << " ";
     }
     return 0;
 }
