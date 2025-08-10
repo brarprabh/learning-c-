@@ -1332,34 +1332,101 @@
 
 // Insertion sort
 
+// #include <bits/stdc++.h>
+// using namespace std;
+// void insertionsort(int arr[], int n)
+// {
+//     for (int i = 0; i < n - 1; i++)
+//     {
+//         int j = i;
+//         while (j > 0 && arr[j - 1] > arr[j])
+//         {
+//             swap(arr[j], arr[j - 1]);
+//             j--;
+//         }
+//     }
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     int arr[n];
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         cin >> arr[i];
+//     }
+//     insertionsort(arr, n);
+//     for (int i = 0; i < n; i++)
+//     {
+//         cout << arr[i] << " ";
+//     }
+//     return 0;
+// }
+
+// Merge sort
+
 #include <bits/stdc++.h>
 using namespace std;
-void insertionsort(int arr[], int n)
+void merge(int n, vector<int> &arr, int low, int mid, int high)
 {
-    for (int i = 0; i < n - 1; i++)
+    int right = low;
+    int left = mid + 1;
+    vector<int> answer;
+    while (right <= mid && left <= high)
     {
-        int j = i;
-        while (j > 0 && arr[j - 1] > arr[j])
+        if (arr[right] < arr[left])
         {
-            swap(arr[j], arr[j - 1]);
-            j--;
+            answer.push_back(arr[right]);
+            right++;
+        }
+        else
+        {
+            answer.push_back(arr[left]);
+            left++;
         }
     }
+    while (right <= mid)
+    {
+        answer.push_back(arr[right]);
+        right++;
+    }
+    while (left <= high)
+    {
+        answer.push_back(arr[left]);
+        left++;
+    }
+
+    for (int i = low; i <= high; i++)
+    {
+        arr[i] = answer[i - low]; // low could be anything..
+    }
+}
+void mergesort(int n, vector<int> &arr, int low, int high)
+{
+    if (low == high)
+        return;
+    int mid = (low + high) / 2;
+    mergesort(n, arr, low, mid);
+    mergesort(n, arr, mid + 1, high);
+    merge(n, arr, low, mid, high);
 }
 int main()
 {
     int n;
     cin >> n;
-    int arr[n];
-
+    vector<int> arr;
     for (int i = 0; i < n; i++)
     {
-        cin >> arr[i];
+        int x;
+        cin >> x;
+        arr.push_back(x);
     }
-    insertionsort(arr, n);
-    for (int i = 0; i < n; i++)
+
+    mergesort(n, arr, 0, n - 1);
+    for (auto it : arr)
     {
-        cout << arr[i] << " ";
+        cout << it << " ";
     }
     return 0;
 }
