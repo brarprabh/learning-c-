@@ -1433,59 +1433,86 @@
 
 // Quick sort
 
-#include <bits/stdc++.h>
-using namespace std;
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int partion(int n, vector<int> &arr, int low, int high)
-{
-    int pivot = arr[low];
-    int i = low;
-    int j = high;
+// int partion(int n, vector<int> &arr, int low, int high)
+// {
+//     int pivot = arr[low];
+//     int i = low;
+//     int j = high;
 
-    while (i < j)
-    {
-        while (arr[i] <= pivot && i <= high - 1)
-        {
-            i++;
-        }
-        while (arr[j] > pivot && j >= low + 1)
-        {
-            j--;
-        }
-        if (i < j)
-        {
-            swap(arr[i], arr[j]);
-        }
-    }
-    swap(arr[low], arr[j]); // Its not always to zero
-    return j;
-}
+//     while (i < j)
+//     {
+//         while (arr[i] <= pivot && i <= high - 1)
+//         {
+//             i++;
+//         }
+//         while (arr[j] > pivot && j >= low + 1)
+//         {
+//             j--;
+//         }
+//         if (i < j)
+//         {
+//             swap(arr[i], arr[j]);
+//         }
+//     }
+//     swap(arr[low], arr[j]); // Its not always to zero
+//     return j;
+// }
 
-void quicksort(int n, vector<int> &arr, int low, int high)
-{
-    if (low < high)
-    {
-        int pindex = partion(n, arr, low, high);
-        quicksort(n, arr, low, pindex - 1);
-        quicksort(n, arr, pindex + 1, high);
-    }
-}
-int main()
-{
-    int n;
-    cin >> n;
-    vector<int> arr;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        arr.push_back(x);
-    }
+// void quicksort(int n, vector<int> &arr, int low, int high)
+// {
+//     if (low < high)
+//     {
+//         int pindex = partion(n, arr, low, high);
+//         quicksort(n, arr, low, pindex - 1);
+//         quicksort(n, arr, pindex + 1, high);
+//     }
+// }
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
 
-    quicksort(n, arr, 0, n - 1);
-    for (auto it : arr)
-    {
-        cout << it << " ";
-    }
-    return 0;
-}
+//     quicksort(n, arr, 0, n - 1);
+//     for (auto it : arr)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// pascal triangle
+
+// class Solution {
+// public:
+//     vector<int> generaterows(int rows) {
+//         vector<int> result;
+//     long long answer = 1;
+//         result.push_back(answer);
+//         for(int col = 1; col < rows; col++) {
+//             answer = answer * (rows-col);
+//             answer = answer / col;
+//             result.push_back(answer);
+//         }
+//         return result;
+//     }
+
+//     vector<vector<int>> generate(int numRows) {
+//           vector<vector<int>> answer;
+//         for(int i = 1; i <= numRows; i++) {
+//              answer.push_back(generaterows(i));
+//         }
+//         return answer;
+//     }
+// };
+
+// single row of pascal triangle
