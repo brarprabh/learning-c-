@@ -169,34 +169,40 @@
 //         if(a > b) a = a % b;
 //         else b = b % a;
 //     }
-//     if(a == 0) cout << b;
+//     if(a == 0) cout << b;  // its opposite will be the answer
 //     else cout << a;
 // }
 
 // binary search
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
 
-// void binarySearch(int arr[], int n, int num ) {
+// void binarySearch(int arr[], int n, int num)
+// {
 //     int s = 0;
-//     int l = n-1;
+//     int l = n - 1;
 //     int mid;
-//     while(s < l) {
-//         mid = (s+l)/2;
-//         if(arr[mid] == num) {
-//             cout << "element found " <<mid+1<<endl;
+//     while (s < l)
+//     {
+//         mid = (s + l) / 2;
+//         if (arr[mid] == num)
+//         {
+//             cout << "element found " << mid + 1 << endl;
 //             break;
 //         }
-//         else if(arr[mid] < num) {
+//         else if (arr[mid] < num)
+//         {
 //             mid = s + 1;
 //         }
-//         else if(arr[mid] > num) {
+//         else if (arr[mid] > num)
+//         {
 //             mid = l - 1;
 //         }
 //     }
 // }
-// int main() {
+// int main()
+// {
 //     int arr[] = {1, 2, 3, 4, 5, 6};
 //     int n = 6;
 //     int num = 3;
@@ -224,17 +230,21 @@
 
 // Checking if a string is a palindrome ot not
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
-// int f(int i, string &s) {
-//     if(i >= s.size()/2) {
-//         return true;
+// int f(int i, string &s)
+// {
+//     if (i >= s.size() / 2)
+//     {
+//         return true; // jdo condition true ho gyi ta palindrome ho ju...
 //     }
-//     if(s[i] != s[s.size() - i -1]) return false;
+//     if (s[i] != s[s.size() - i - 1])
+//         return false;
 
-// return f(i+1, s);
+//     return f(i + 1, s);
 // }
-// int main() {
+// int main()
+// {
 //     string s;
 //     cin >> s;
 
@@ -251,15 +261,15 @@
 //     string s;
 //     cin >> s;
 
-//     int hash[25] = {0};
+//     int hash[25] = {0};   // map is fine as we dont need to assign the values...
 //     for (int i = 0; i < s.size(); i++)
 //     {
-//         hash[s[i] - 'a']++;
+//         hash[s[i] - 'a']++;    // to make in number format..
 //     }
 //     int q;
 //     cin >> q;
 
-//     while (q--)
+//     while (q--)  // These are test cases..
 //     {
 //         char ch;
 //         cin >> ch;
@@ -270,10 +280,11 @@
 
 // Hashing using maps
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
 
-// int main() {
+// int main()
+// {
 //     string s;
 //     cin >> s;
 
@@ -281,17 +292,21 @@
 //     // cin >> q;
 
 //     map<char, int> mpp;
-//     for(int i = 0; i < s.size(); i++) {
+//     for (int i = 0; i < s.size(); i++)
+//     {
 //         mpp[s[i]]++;
 //     }
 //     int maxFreq = INT_MIN;
 //     int minFreq = INT_MAX;
-//     for(auto it : mpp) {
+//     for (auto it : mpp)
+//     {
 //         cout << it.first << "-->" << it.second << endl;
-//         if(it.second > maxFreq){
+//         if (it.second > maxFreq)
+//         {
 //             maxFreq = it.second;
 //         }
-//         if(it.second < minFreq){
+//         if (it.second < minFreq)
+//         {
 //             minFreq = it.second;
 //         }
 //     }
@@ -307,41 +322,43 @@
 
 // largest and second largest elements
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
-// vector<int> greatest(vector<int> &a, int n) {
+// vector<int> greatest(vector<int> &a, int n)
+// {
 //     int largest = INT_MIN;
 //     int slargest = INT_MIN;
-//     for(int i = 0; i < n; i++) {
-//         if(a[i] > largest) {
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (a[i] > largest)
+//         {
 //             slargest = largest;
 //             largest = a[i];
 //         }
-//         else if(a[i] < largest && a[i] > slargest) slargest = a[i];
+//         else if (a[i] < largest && a[i] > slargest)
+//             slargest = a[i];
 //     }
 //     return {largest, slargest};
 // }
 // vector<int> answer(vector<int> &a, int n)
 // {
-//   return  greatest(a, n);
+//     return greatest(a, n);
 // }
-// int main() {
+// int main()
+// {
 //     int n;
-//     cin>>n;
+//     cin >> n;
 
-//     // int arr[n];
-//     // for(int i = 0; i < n; i++){
-//     //     cin >> arr[i];
-//     //}
-//     vector<int> arr;  // no need to use[]
-// for(int i = 0; i < n; i++) {
-//     int x;
-//     cin >> x;
-//     arr.push_back(x);  // insert will not work
-// }
+//     vector<int> arr; // no need to use[]
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x); // insert will not work
+//     }
 
-//   vector<int> ans = answer(arr, n);   //jive structure hunda si
-//   cout << ans[0] << " " << ans[1];
+//     vector<int> ans = answer(arr, n); // jive structure hunda si
+//     cout << ans[0] << " " << ans[1];
 //     return 0;
 // }
 
@@ -359,7 +376,7 @@
 //         arr[i-d] = arr[i];  // 0 toh start hoyo ga..
 //     }
 //     for(int i = n-d; i < n; i++) { // kyunki more than d h skde aa
-//         arr[i] = temp[i - (n-d)];   // temp vich 0 toh store aa...
+//         arr[i] = temp[i - (n-d)];   // temp vich 0 toh store aa...    0 lyi jehda vi ode = aa ode nal - kr dena..
 //     }
 // }
 // int main() {
@@ -374,30 +391,43 @@
 
 // Moves all the zeros to the right
 
-// # include <bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
-//  vector<int> move(vector<int> &arr, int n) {
-//     int j = -1;   // we dont know the position of j
-//     for(int i= 0; i < n; i++) {
-//         if(arr[i] == 0){ j = i;
-//         break;}
+// vector<int> move(vector<int> &arr, int n)
+// {
+//     int j = -1; // we dont know the position of j
+//     for (int i = 0; i < n; i++)  // position of first zero
+//     {
+//         if (arr[i] == 0)
+//         {
+//             j = i;
+//             break;
+//         }
 //     }
-//     for(int i = j + 1; i < n; i++) {
-//         if(arr[i]!=0) {
-//             swap(arr[i], arr[j]); j++;
+//     for (int i = j + 1; i < n; i++)
+//     {
+//         if (arr[i] != 0)
+//         {
+//             swap(arr[i], arr[j]);
+//             j++;
+//         }
 //     }
-//  }
-//  return arr;
+//     return arr;
 // }
-// int main() {
-//     int n; cin >>n;
+// int main()
+// {
+//     int n;
+//     cin >> n;
 //     vector<int> arr;
-//     for(int i =0; i < n; i++) {
-//         int x; cin >> x;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
 //         arr.push_back(x);
 //     }
 //     vector<int> result = move(arr, n);
-//     for(auto it : result) cout << it << " ";
+//     for (auto it : result)
+//         cout << it << " ";
 //     return 0;
 // }
 
@@ -407,19 +437,26 @@
 // using namespace std;
 
 // // Function to find the union of two sorted arrays
-// vector<int> findUnion(const vector<int>& arr, const vector<int>& brr) {
+// vector<int> findUnion(const vector<int> &arr, const vector<int> &brr)
+// {
 //     int i = 0, j = 0;
 //     vector<int> result;
 //     int n1 = arr.size(), n2 = brr.size();
 
-//     while (i < n1 && j < n2) {
+//     while (i < n1 && j < n2)
+//     {
 //         // Avoid duplicates in result
 //         int val;
-//         if (arr[i] < brr[j]) {
+//         if (arr[i] < brr[j])
+//         {
 //             val = arr[i++];
-//         } else if (arr[i] > brr[j]) {
+//         }
+//         else if (arr[i] > brr[j])
+//         {
 //             val = brr[j++];
-//         } else {
+//         }
+//         else
+//         {
 //             val = arr[i++];
 //             j++;
 //         }
@@ -427,13 +464,15 @@
 //             result.push_back(val);
 //     }
 //     // Add remaining elements from arr
-//     while (i < n1) {
+//     while (i < n1)
+//     {
 //         if (result.empty() || result.back() != arr[i])
 //             result.push_back(arr[i]);
 //         i++;
 //     }
 //     // Add remaining elements from brr
-//     while (j < n2) {
+//     while (j < n2)
+//     {
 //         if (result.empty() || result.back() != brr[j])
 //             result.push_back(brr[j]);
 //         j++;
@@ -441,48 +480,58 @@
 //     return result;
 // }
 
-// int main() {
+// int main()
+// {
 //     int n1, n2;
 //     cin >> n1;
 //     vector<int> arr(n1);
-//     for (int i = 0; i < n1; i++) cin >> arr[i];
+//     for (int i = 0; i < n1; i++)
+//         cin >> arr[i];
 
 //     cin >> n2;
 //     vector<int> brr(n2);
-//     for (int i = 0; i < n2; i++) cin >> brr[i];
+//     for (int i = 0; i < n2; i++)
+//         cin >> brr[i];
 
 //     vector<int> result = findUnion(arr, brr);
-//     for (int num : result) cout << num << " ";
+//     for (int num : result)
+//         cout << num << " ";
 //     return 0;
 // }
 
 // Intersection
 
-// # include<bits/stdc++.h>
+// #include <bits/stdc++.h>
 // using namespace std;
 
-// vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2) {
-//       int i = 0;
-//       int j = 0;
-//       vector<int>insertarr;
-//       while(i < n1 && j < n2) {
-//         if(arr[i] < brr[j]) i++;
-
-//       else if(arr[i] > brr[j]) j++;
-//     else
+// vector<int> intersectionarr(vector<int> arr, vector<int> brr, int n1, int n2)
+// {
+//     int i = 0;
+//     int j = 0;
+//     vector<int> insertarr;
+//     while (i < n1 && j < n2)
 //     {
-//         insertarr.push_back(arr[i]);
-//         i++; j++;
-//     }
+//         if (arr[i] < brr[j])
+//             i++;
 
+//         else if (arr[i] > brr[j])
+//             j++;
+//         else
+//         {
+//             insertarr.push_back(arr[i]); // when same only one element will be printed..
+//             i++;
+//             j++;
+//         }
 //     }
 //     return insertarr;
 // }
-// int main() {
+// int main()
+// {
 //     int n1;
 //     cin >> n1;
 //     vector<int> arr;
-//     for(int i = 0; i < n1; i++) {
+//     for (int i = 0; i < n1; i++)
+//     {
 //         int x;
 //         cin >> x;
 //         arr.push_back(x);
@@ -490,13 +539,15 @@
 //     int n2;
 //     cin >> n2;
 //     vector<int> brr;
-//     for(int i = 0; i < n2; i++) {
+//     for (int i = 0; i < n2; i++)
+//     {
 //         int y;
 //         cin >> y;
 //         brr.push_back(y);
 //     }
 //     vector<int> result = intersectionarr(arr, brr, n1, n2);
-//     for(auto it : result) {
+//     for (auto it : result)
+//     {
 //         cout << it << " ";
 //     }
 //     return 0;
@@ -563,7 +614,7 @@
 //     return 0;
 // }
 
-// Sub array
+// Sub array with sum = k
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -577,12 +628,12 @@
 //     for (int right = 0; right < n; right++)
 //     {
 //         sum += arr[right];
-//         while (sum > k && left <= right)
+//         while (sum > k && left <= right)  // whenever the sum is less the loop will not run
 //         {
 //             sum -= arr[left];
 //             left++;
 //         }
-//         if (sum == k)
+//         if (sum == k)   // right and left indexes will be there but not the length
 //             maxlen = max(maxlen, right - left + 1);
 //     }
 //     return maxlen;
@@ -732,7 +783,7 @@
 //     return 0;
 // }
 
-// Finding majority elements
+// Finding majority elements using hash map better approach
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -745,9 +796,9 @@
 //     }
 //     for (auto it : mpp)
 //     {
-//         if (it.second > n / 2)
+//         if (it.second > n / 2) // the index is stored in the second..
 //         {
-//             cout << it.first;
+//             cout << it.first; // the element will be in the first..
 //         }
 //     }
 // }
@@ -764,9 +815,9 @@
 //     }
 //     maj(arr, n);
 //     return 0;
-// }
+//}
 
-// majority element using moore algorithm
+// majority element using moore algorithm  n/2 times..
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -823,7 +874,7 @@
 //     for (int i = 0; i < n; i++)
 //     {
 //         if (sum == 0)
-//             start = i;
+//             start = i;   // for the index to be start
 //         sum += arr[i];
 //         if (sum > maxi)
 //         {
@@ -882,7 +933,7 @@
 //     }
 //     cout << buyorsell(arr, n);
 //     return 0;
-//}
+// }
 
 // num to arrange at positive and negative indexes
 
@@ -977,7 +1028,7 @@
 //     return 0;
 // }
 
-// Permutations..
+// Next Permutations..
 
 // #include <bits/stdc++.h>
 // using namespace std;
@@ -1685,63 +1736,63 @@
 
 // optimal soln for three sum problem
 
-#include <bits/stdc++.h>
-using namespace std;
-vector<vector<int>> threesum(vector<int> arr, int n)
-{
-    sort(arr.begin(), arr.end());
-    vector<vector<int>> answer;
-    for (int i = 0; i < n; i++)
-    {
-        int j = i + 1;
-        int k = n - 1;
-        if (i > 0 && arr[i] == arr[i - 1])
-            continue;
-        while (j < k)
-        {
-            int sum = arr[i] + arr[j] + arr[k];
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<vector<int>> threesum(vector<int> arr, int n)
+// {
+//     sort(arr.begin(), arr.end());
+//     vector<vector<int>> answer;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int j = i + 1;
+//         int k = n - 1;
+//         if (i > 0 && arr[i] == arr[i - 1])
+//             continue;
+//         while (j < k)
+//         {
+//             int sum = arr[i] + arr[j] + arr[k];
 
-            if (sum < 0)
-                j++;
-            else if (sum > 0)
-                k--;
+//             if (sum < 0)
+//                 j++;
+//             else if (sum > 0)
+//                 k--;
 
-            else
-            {
-                vector<int> temp = {arr[i], arr[j], arr[k]};
-                answer.push_back(temp);
-                j++;
-                k--;
-                while (j < k && arr[j] == arr[j - 1])
-                    j++;
-                while (j < k && arr[k] == arr[k + 1])
-                    k--;
-            }
-        }
-        }
-    return answer;
-}
+//             else
+//             {
+//                 vector<int> temp = {arr[i], arr[j], arr[k]};
+//                 answer.push_back(temp);
+//                 j++;
+//                 k--;
+//                 while (j < k && arr[j] == arr[j - 1])
+//                     j++;
+//                 while (j < k && arr[k] == arr[k + 1])
+//                     k--;
+//             }
+//         }
+//         }
+//     return answer;
+// }
 
-int main()
-{
-    int n;
-    cin >> n;
-    vector<int> arr;
-    for (int i = 0; i < n; i++)
-    {
-        int x;
-        cin >> x;
-        arr.push_back(x);
-    }
-    vector<vector<int>> answer = threesum(arr, n);
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<vector<int>> answer = threesum(arr, n);
 
-    for (auto it : answer)
-    {
-        for (auto val : it)
-        {
-            cout << val << " ";
-        }
-        cout << "\n";
-    }
-    return 0;
-}
+//     for (auto it : answer)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << "\n";
+//     }
+//     return 0;
+// }
