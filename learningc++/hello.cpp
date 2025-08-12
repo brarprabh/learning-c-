@@ -1490,7 +1490,7 @@
 //     return 0;
 // }
 
-// pascal triangle
+// pascal triangle and single row of pascal triangle
 
 // class Solution {
 // public:
@@ -1515,4 +1515,44 @@
 //     }
 // };
 
-// single row of pascal triangle
+// majority element more than n/3 times;
+
+#include <bits/stdc++.h>
+using namespace std;
+
+vector<int> majelement(vector<int> arr, int n)
+{
+    map<int, int> mpp;
+    vector<int> answer;
+    int min = (int)(n / 3) + 1;
+    for (int i = 0; i < n; i++)
+    {
+        mpp[arr[i]]++;
+        if (mpp[arr[i]] == min)
+        {
+            answer.push_back(arr[i]);
+        }
+        if (answer.size() == 2)
+            break;
+    }
+    return answer;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr;
+    for (int i = 0; i < n; i++)
+    {
+        int x;
+        cin >> x;
+        arr.push_back(x);
+    }
+    vector<int> answer = majelement(arr, n);
+    for (auto it : answer)
+    {
+        cout << it << " ";
+    }
+    return 0;
+}
