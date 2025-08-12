@@ -1632,31 +1632,94 @@
 //     return 0;
 //}
 
-// Three sum problem  better solution..
+// Three sum problem  better soln
+
+// #include <bits/stdc++.h>
+// using namespace std;
+// vector<vector<int>> threesum(vector<int> arr, int n)
+// {
+//     set<vector<int>> stt;
+//     for (int i = 0; i < n; i++)
+//     {
+//         set<int> st;
+
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             int third = -(arr[i] + arr[j]);
+//             if (st.find(third) != st.end())
+//             {
+//                 vector<int> temp = {arr[i], arr[j], third};
+//                 sort(temp.begin(), temp.end());
+//                 stt.insert(temp);
+//             }
+//             st.insert(arr[j]);
+//         }
+//     }
+//     vector<vector<int>> ans(stt.begin(), stt.end());
+//     return ans;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<vector<int>> answer = threesum(arr, n);
+
+//     for (auto it : answer)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << "\n";
+//     }
+//     return 0;
+// }
+
+// optimal soln for three sum problem
 
 #include <bits/stdc++.h>
 using namespace std;
 vector<vector<int>> threesum(vector<int> arr, int n)
 {
-    set<vector<int>> stt;
+    sort(arr.begin(), arr.end());
+    vector<vector<int>> answer;
     for (int i = 0; i < n; i++)
     {
-        set<int> st;
-
-        for (int j = i + 1; j < n; j++)
+        int j = i + 1;
+        int k = n - 1;
+        if (i > 0 && arr[i] == arr[i - 1])
+            continue;
+        while (j < k)
         {
-            int third = -(arr[i] + arr[j]);
-            if (st.find(third) != st.end())
+            int sum = arr[i] + arr[j] + arr[k];
+
+            if (sum < 0)
+                j++;
+            else if (sum > 0)
+                k--;
+
+            else
             {
-                vector<int> temp = {arr[i], arr[j], third};
-                sort(temp.begin(), temp.end());
-                stt.insert(temp);
+                vector<int> temp = {arr[i], arr[j], arr[k]};
+                answer.push_back(temp);
+                j++;
+                k--;
+                while (j < k && arr[j] == arr[j - 1])
+                    j++;
+                while (j < k && arr[k] == arr[k + 1])
+                    k--;
             }
-            st.insert(arr[j]);
         }
-    }
-    vector<vector<int>> ans(stt.begin(), stt.end());
-    return ans;
+        }
+    return answer;
 }
 
 int main()
