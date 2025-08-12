@@ -1559,58 +1559,104 @@
 
 // Optimal solution for n/3 maj element moore's algorithm
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<int> majelement(vector<int> arr, int n)
+// {
+//     int cnt1 = 0;
+//     int cnt2 = 0;
+//     int el1 = INT_MIN;
+//     int el2 = INT_MIN;
+
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (cnt1 == 0 && arr[i] != el2)
+//         {
+//             el1 = arr[i];
+//             cnt1 = 1;
+//         }
+//         else if (cnt2 == 0 && arr[i] != el1)
+//         {
+//             el2 = arr[i];
+//             cnt2 = 1;
+//         }
+//         else if (arr[i] == el1)
+//         {
+//             cnt1++;
+//         }
+//         else if (arr[i] == el2)
+//         {
+//             cnt2++;
+//         }
+//         else
+//         {
+//             cnt1--;
+//             cnt2--;
+//         }
+//     }
+//     vector<int> answer;
+//     cnt1 = 0;
+//     cnt2 = 0;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (arr[i] == el1)
+//             cnt1++;
+//         if (arr[i] == el2)
+//             cnt2++;
+//     }
+//     int mini = (int)(n / 3) + 1;
+//     if (cnt1 >= mini)
+//         answer.push_back(el1);
+//     if (cnt2 >= mini)
+//         answer.push_back(el2);
+//     return answer;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer = majelement(arr, n);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+//}
+
+// Three sum problem  better solution..
+
 #include <bits/stdc++.h>
 using namespace std;
-
-vector<int> majelement(vector<int> arr, int n)
+vector<vector<int>> threesum(vector<int> arr, int n)
 {
-    int cnt1 = 0;
-    int cnt2 = 0;
-    int el1 = INT_MIN;
-    int el2 = INT_MIN;
+    set<vector<int>> stt;
+    for (int i = 0; i < n; i++)
+    {
+        set<int> st;
 
-    for (int i = 0; i < n; i++)
-    {
-        if (cnt1 == 0 && arr[i] != el2)
+        for (int j = i + 1; j < n; j++)
         {
-            el1 = arr[i];
-            cnt1 = 1;
-        }
-        else if (cnt2 == 0 && arr[i] != el1)
-        {
-            el2 = arr[i];
-            cnt2 = 1;
-        }
-        else if (arr[i] == el1)
-        {
-            cnt1++;
-        }
-        else if (arr[i] == el2)
-        {
-            cnt2++;
-        }
-        else
-        {
-            cnt1--;
-            cnt2--;
+            int third = -(arr[i] + arr[j]);
+            if (st.find(third) != st.end())
+            {
+                vector<int> temp = {arr[i], arr[j], third};
+                sort(temp.begin(), temp.end());
+                stt.insert(temp);
+            }
+            st.insert(arr[j]);
         }
     }
-    vector<int> answer;
-    cnt1 = 0;
-    cnt2 = 0;
-    for (int i = 0; i < n; i++)
-    {
-        if (arr[i] == el1)
-            cnt1++;
-        if (arr[i] == el2)
-            cnt2++;
-    }
-    int mini = (int)(n / 3) + 1;
-    if (cnt1 >= mini)
-        answer.push_back(el1);
-    if (cnt2 >= mini)
-        answer.push_back(el2);
-    return answer;
+    vector<vector<int>> ans(stt.begin(), stt.end());
+    return ans;
 }
 
 int main()
@@ -1624,10 +1670,15 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    vector<int> answer = majelement(arr, n);
+    vector<vector<int>> answer = threesum(arr, n);
+
     for (auto it : answer)
     {
-        cout << it << " ";
+        for (auto val : it)
+        {
+            cout << val << " ";
+        }
+        cout << "\n";
     }
     return 0;
 }
