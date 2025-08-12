@@ -1515,26 +1515,101 @@
 //     }
 // };
 
-// majority element more than n/3 times;
+// majority element more than n/3 times better solution
+
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<int> majelement(vector<int> arr, int n)
+// {
+//     map<int, int> mpp;
+//     vector<int> answer;
+//     int min = (int)(n / 3) + 1;
+//     for (int i = 0; i < n; i++)
+//     {
+//         mpp[arr[i]]++;
+//         if (mpp[arr[i]] == min)
+//         {
+//             answer.push_back(arr[i]);
+//         }
+//         if (answer.size() == 2)
+//             break;
+//     }
+//     return answer;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> answer = majelement(arr, n);
+//     for (auto it : answer)
+//     {
+//         cout << it << " ";
+//     }
+//     return 0;
+// }
+
+// Optimal solution for n/3 maj element moore's algorithm
 
 #include <bits/stdc++.h>
 using namespace std;
 
 vector<int> majelement(vector<int> arr, int n)
 {
-    map<int, int> mpp;
-    vector<int> answer;
-    int min = (int)(n / 3) + 1;
+    int cnt1 = 0;
+    int cnt2 = 0;
+    int el1 = INT_MIN;
+    int el2 = INT_MIN;
+
     for (int i = 0; i < n; i++)
     {
-        mpp[arr[i]]++;
-        if (mpp[arr[i]] == min)
+        if (cnt1 == 0 && arr[i] != el2)
         {
-            answer.push_back(arr[i]);
+            el1 = arr[i];
+            cnt1 = 1;
         }
-        if (answer.size() == 2)
-            break;
+        else if (cnt2 == 0 && arr[i] != el1)
+        {
+            el2 = arr[i];
+            cnt2 = 1;
+        }
+        else if (arr[i] == el1)
+        {
+            cnt1++;
+        }
+        else if (arr[i] == el2)
+        {
+            cnt2++;
+        }
+        else
+        {
+            cnt1--;
+            cnt2--;
+        }
     }
+    vector<int> answer;
+    cnt1 = 0;
+    cnt2 = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (arr[i] == el1)
+            cnt1++;
+        if (arr[i] == el2)
+            cnt2++;
+    }
+    int mini = (int)(n / 3) + 1;
+    if (cnt1 >= mini)
+        answer.push_back(el1);
+    if (cnt2 >= mini)
+        answer.push_back(el2);
     return answer;
 }
 
