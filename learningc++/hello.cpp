@@ -1799,49 +1799,104 @@
 
 // 4sum
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> foursum(vector<int> arr, int n, int target)
+// {
+//     sort(arr.begin(), arr.end());
+//     vector<vector<int>> answer;
+//     for (int i = 0; i < n; i++)
+//     {
+//         if (i > 0 && arr[i] == arr[i - 1])
+//             continue;
+//         for (int j = i + 1; j < n; j++)
+//         {
+//             if (j > (i + 1) && arr[j] == arr[j - 1])
+//                 continue;
+//             int k = j + 1;
+//             int l = n - 1;
+//             while (k < l)
+//             {
+//                 long long sum = arr[i];
+//                 sum += arr[j];
+//                 sum += arr[k];
+//                 sum += arr[l];
+
+//                 if (sum == target)
+//                 {
+//                     vector<int> temp = {arr[i], arr[j], arr[k], arr[l]};
+//                     answer.push_back(temp);
+//                     k++;
+//                     l--;
+//                     while (k < l && arr[k] == arr[k - 1])
+//                         k++;
+//                     while (k < l && arr[l] == arr[l + 1])
+//                         l--;
+//                 }
+//                 else if (sum < target)
+//                     k++;
+//                 else
+//                     l--;
+//             }
+//         }
+//     }
+//     return answer;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int target;
+//     cin >> target;
+//     vector<vector<int>> answer = foursum(arr, n, target);
+
+//     for (auto it : answer)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+// Longest subarray with sum = 0 using maps
+
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int>> foursum(vector<int> arr, int n, int target)
+int maxsubarray(vector<int> arr, int n)
 {
-    sort(arr.begin(), arr.end());
-    vector<vector<int>> answer;
+    int sum = 0;
+    int maxi = 0;
+    map<int, int> mpp;
     for (int i = 0; i < n; i++)
     {
-        if (i > 0 && arr[i] == arr[i - 1])
-            continue;
-        for (int j = i + 1; j < n; j++)
+        sum += arr[i];
+        if (sum == 0)
         {
-            if (j > (i + 1) && arr[j] == arr[j - 1])
-                continue;
-            int k = j + 1;
-            int l = n - 1;
-            while (k < l)
-            {
-                long long sum = arr[i];
-                sum += arr[j];
-                sum += arr[k];
-                sum += arr[l];
-
-                if (sum == target)
-                {
-                    vector<int> temp = {arr[i], arr[j], arr[k], arr[l]};
-                    answer.push_back(temp);
-                    k++;
-                    l--;
-                    while (k < l && arr[k] == arr[k - 1])
-                        k++;
-                    while (k < l && arr[l] == arr[l + 1])
-                        l--;
-                }
-                else if (sum < target)
-                    k++;
-                else
-                    l--;
-            }
+            int maxi = i + 1;
+        }
+        else if (mpp.find(sum) != mpp.end())
+        {
+            maxi = max(maxi, i - mpp[sum]);
+        }
+        else
+        {
+            mpp[sum] = i;
         }
     }
-    return answer;
+    return maxi;
 }
 
 int main()
@@ -1855,17 +1910,7 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    int target;
-    cin >> target;
-    vector<vector<int>> answer = foursum(arr, n, target);
-
-    for (auto it : answer)
-    {
-        for (auto val : it)
-        {
-            cout << val << " ";
-        }
-        cout << endl;
-    }
+    int maxi = maxsubarray(arr, n);
+    cout << maxi;
     return 0;
 }
