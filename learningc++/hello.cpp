@@ -1956,46 +1956,97 @@
 
 // Merge ovrelaping intervals
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// vector<vector<int>> overlappingele(vector<vector<int>> arr)
+// {
+//     int n = arr.size();
+//     vector<vector<int>> answer;
+//     sort(arr.begin(), arr.end());
+//     for (int i = 0; i < n; i++)
+//     {
+
+//         if (answer.empty() || arr[i][0] >= answer.back()[1])
+//         {
+//             answer.push_back(arr[i]); // new start krna
+//         }
+//         else
+//         {
+//             answer.back()[1] = max(answer.back()[1], arr[i][1]); // previous nu hi expand krna..
+//         }
+//     }
+//     return answer;
+// }
+// int main()
+// {
+//     int x;
+//     cin >> x;
+//     vector<vector<int>> arr(x, vector<int>(2));
+//     for (int i = 0; i < x; i++)
+//     {
+
+//         cin >> arr[i][0] >> arr[i][1];
+//     }
+//     vector<vector<int>> answer = overlappingele(arr);
+//     for (auto it : answer)
+//     {
+//         for (auto val : it)
+//         {
+//             cout << val << " ";
+//         }
+//         cout << endl;
+//     }
+//     return 0;
+// }
+
+// merge two sorted arrays
+
 #include <bits/stdc++.h>
 using namespace std;
 
-vector<vector<int>> overlappingele(vector<vector<int>> arr)
+void merge(vector<int> &arr, vector<int> &brr, int n1, int n2)
 {
-    int n = arr.size();
-    vector<vector<int>> answer;
-    sort(arr.begin(), arr.end());
-    for (int i = 0; i < n; i++)
+    int left = n1 - 1;
+    int right = 0;
+    while (left >= 0 && right < n2)
     {
-
-        if (answer.empty() || arr[i][0] >= answer.back()[1])
+        if (arr[left] > brr[right])
         {
-            answer.push_back(arr[i]); // new start krna
+            swap(arr[left], brr[right]);
+            left--;
+            right++;
         }
         else
         {
-            answer.back()[1] = max(answer.back()[1], arr[i][1]); // previous nu hi expand krna..
+            break;
         }
     }
-    return answer;
+    sort(arr.begin(), arr.end() + n1);
+    sort(brr.begin(), brr.end());
 }
+
 int main()
 {
-    int x;
-    cin >> x;
-    vector<vector<int>> arr(x, vector<int>(2));
-    for (int i = 0; i < x; i++)
-    {
+    int n1;
+    cin >> n1;
+    int n2;
+    cin >> n2;
 
-        cin >> arr[i][0] >> arr[i][1];
-    }
-    vector<vector<int>> answer = overlappingele(arr);
-    for (auto it : answer)
+    vector<int> arr;
+    for (int i = 0; i < n1; i++)
     {
-        for (auto val : it)
-        {
-            cout << val << " ";
-        }
-        cout << endl;
+        int x;
+        cin >> x;
+        arr.push_back(x);
     }
+    vector<int> brr;
+    for (int i = 0; i < n2; i++)
+    {
+        int x;
+        cin >> x;
+        brr.push_back(x);
+    }
+    merge(arr, brr, n1, n2);
     return 0;
 }
