@@ -1917,39 +1917,85 @@
 
 // number of subarray with xor k
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int xormax(vector<int> arr, int n, int target)
+// {
+//     int xr = 0;
+//     int count = 0;
+//     map<int, int> mpp;
+//     mpp[xr]++; // store the key value pair of {0, 1}
+//     for (int i = 0; i < n; i++)
+//     {
+//         xr = xr ^ arr[i];
+//         int x = xr ^ target;
+//         count += mpp[x];
+//         mpp[xr]++; // we have to store the xor not the x
+//     }
+//     return count;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int target;
+//     cin >> target;
+//     int count = xormax(arr, n, target);
+//     cout << count;
+//     return 0;
+// }
+
+// Merge ovrelaping intervals
+
 #include <bits/stdc++.h>
 using namespace std;
 
-int xormax(vector<int> arr, int n, int target)
+vector<vector<int>> overlappingele(vector<vector<int>> arr)
 {
-    int xr = 0;
-    int count = 0;
-    map<int, int> mpp;
-    mpp[xr]++; // store the key value pair of {0, 1}
+    int n = arr.size();
+    vector<vector<int>> answer;
+    sort(arr.begin(), arr.end());
     for (int i = 0; i < n; i++)
     {
-        xr = xr ^ arr[i];
-        int x = xr ^ target;
-        count += mpp[x];
-        mpp[xr]++; // we have to store the xor not the x
-    }
-    return count;
-}
 
+        if (answer.empty() || arr[i][0] >= answer.back()[1])
+        {
+            answer.push_back(arr[i]); // new start krna
+        }
+        else
+        {
+            answer.back()[1] = max(answer.back()[1], arr[i][1]); // previous nu hi expand krna..
+        }
+    }
+    return answer;
+}
 int main()
 {
-    int n;
-    cin >> n;
-    vector<int> arr;
-    for (int i = 0; i < n; i++)
+    int x;
+    cin >> x;
+    vector<vector<int>> arr(x, vector<int>(2));
+    for (int i = 0; i < x; i++)
     {
-        int x;
-        cin >> x;
-        arr.push_back(x);
+
+        cin >> arr[i][0] >> arr[i][1];
     }
-    int target;
-    cin >> target;
-    int count = xormax(arr, n, target);
-    cout << count;
+    vector<vector<int>> answer = overlappingele(arr);
+    for (auto it : answer)
+    {
+        for (auto val : it)
+        {
+            cout << val << " ";
+        }
+        cout << endl;
+    }
     return 0;
 }
