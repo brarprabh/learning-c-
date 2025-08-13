@@ -1872,31 +1872,68 @@
 
 // Longest subarray with sum = 0 using maps
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// int maxsubarray(vector<int> arr, int n)
+// {
+//     int sum = 0;
+//     int maxi = 0;
+//     map<int, int> mpp;
+//     for (int i = 0; i < n; i++)
+//     {
+//         sum += arr[i];
+//         if (sum == 0)
+//         {
+//             int maxi = i + 1;
+//         }
+//         else if (mpp.find(sum) != mpp.end())
+//         {
+//             maxi = max(maxi, i - mpp[sum]);
+//         }
+//         else
+//         {
+//             mpp[sum] = i;
+//         }
+//     }
+//     return maxi;
+// }
+
+// int main()
+// {
+//     int n;
+//     cin >> n;
+//     vector<int> arr;
+//     for (int i = 0; i < n; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     int maxi = maxsubarray(arr, n);
+//     cout << maxi;
+//     return 0;
+// }
+
+// number of subarray with xor k
+
 #include <bits/stdc++.h>
 using namespace std;
 
-int maxsubarray(vector<int> arr, int n)
+int xormax(vector<int> arr, int n, int target)
 {
-    int sum = 0;
-    int maxi = 0;
+    int xr = 0;
+    int count = 0;
     map<int, int> mpp;
+    mpp[xr]++; // store the key value pair of {0, 1}
     for (int i = 0; i < n; i++)
     {
-        sum += arr[i];
-        if (sum == 0)
-        {
-            int maxi = i + 1;
-        }
-        else if (mpp.find(sum) != mpp.end())
-        {
-            maxi = max(maxi, i - mpp[sum]);
-        }
-        else
-        {
-            mpp[sum] = i;
-        }
+        xr = xr ^ arr[i];
+        int x = xr ^ target;
+        count += mpp[x];
+        mpp[xr]++; // we have to store the xor not the x
     }
-    return maxi;
+    return count;
 }
 
 int main()
@@ -1910,7 +1947,9 @@ int main()
         cin >> x;
         arr.push_back(x);
     }
-    int maxi = maxsubarray(arr, n);
-    cout << maxi;
+    int target;
+    cin >> target;
+    int count = xormax(arr, n, target);
+    cout << count;
     return 0;
 }
