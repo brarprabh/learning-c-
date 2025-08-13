@@ -2002,51 +2002,93 @@
 
 // merge two sorted arrays
 
+// #include <bits/stdc++.h>
+// using namespace std;
+
+// void merge(vector<int> &arr, vector<int> &brr, int n1, int n2)
+// {
+//     int left = n1 - 1;
+//     int right = 0;
+//     while (left >= 0 && right < n2)
+//     {
+//         if (arr[left] > brr[right])
+//         {
+//             swap(arr[left], brr[right]);
+//             left--;
+//             right++;
+//         }
+//         else
+//         {
+//             break;
+//         }
+//     }
+//     sort(arr.begin(), arr.end() + n1);
+//     sort(brr.begin(), brr.end());
+// }
+
+// int main()
+// {
+//     int n1;
+//     cin >> n1;
+//     int n2;
+//     cin >> n2;
+
+//     vector<int> arr;
+//     for (int i = 0; i < n1; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         arr.push_back(x);
+//     }
+//     vector<int> brr;
+//     for (int i = 0; i < n2; i++)
+//     {
+//         int x;
+//         cin >> x;
+//         brr.push_back(x);
+//     }
+//     merge(arr, brr, n1, n2);
+//     return 0;
+// }
+
+// max product of subarray
+
 #include <bits/stdc++.h>
 using namespace std;
 
-void merge(vector<int> &arr, vector<int> &brr, int n1, int n2)
+int maxprod(vector<int> &arr, int n)
 {
-    int left = n1 - 1;
-    int right = 0;
-    while (left >= 0 && right < n2)
+    int maxi = INT_MIN;
+    int pre = 1;
+    int suff = 1;
+    for (int i = 0; i < n; i++)
     {
-        if (arr[left] > brr[right])
-        {
-            swap(arr[left], brr[right]);
-            left--;
-            right++;
-        }
-        else
-        {
-            break;
-        }
+
+        pre = pre * arr[i];
+        suff = suff * arr[n - 1 - i]; // imp step;
+
+        maxi = max(maxi, max(pre, suff));
+
+        if (pre == 0)
+            pre = 1;
+        if (suff == 0)
+            suff = 1;
     }
-    sort(arr.begin(), arr.end() + n1);
-    sort(brr.begin(), brr.end());
+    return maxi;
 }
 
 int main()
 {
-    int n1;
-    cin >> n1;
-    int n2;
-    cin >> n2;
-
+    int n;
+    cin >> n;
     vector<int> arr;
-    for (int i = 0; i < n1; i++)
+    for (int i = 0; i < n; i++)
     {
         int x;
         cin >> x;
         arr.push_back(x);
     }
-    vector<int> brr;
-    for (int i = 0; i < n2; i++)
-    {
-        int x;
-        cin >> x;
-        brr.push_back(x);
-    }
-    merge(arr, brr, n1, n2);
+    int count = maxprod(arr, n);
+    cout << count;
     return 0;
 }
